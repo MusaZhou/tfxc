@@ -71,7 +71,7 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                            <li><a href="/backend/buyer_management"><i class="fa fa-user fa-fw"></i> 客户列表</a>
+                            <li><a href="/admin/user_management"><i class="fa fa-user fa-fw"></i> 客户列表</a>
                         	<li>
                             	<a href="#"><i class="fa fa-university fa-fw"></i> 学校管理<span class="fa arrow"></span></a>
                             	<ul class="nav nav-second-level">
@@ -113,7 +113,7 @@
     <script src="{{ URL::asset('js/util.js') }}"></script>
     
     <!-- Bootbox -->
-    <script src="{{ URL::asset('js/bootbox.js') }}"></script>
+    <script src="{{ URL::asset('js/bootbox/bootbox.min.js') }}"></script>
     
     <script>
     $.ajaxSetup({

@@ -50,7 +50,7 @@
                         <h3 class="panel-title">请登录</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="post" action="backend/login">
+                        <form role="form" method="post" action="/admin/login">
                         	{{ csrf_field() }}
                         	<p class="bg-warning">{{ $error or ''}}</p>
                             <fieldset>

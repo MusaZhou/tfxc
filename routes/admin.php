@@ -14,3 +14,5 @@
 Route::get('/', 'LoginController@index');
 
 Route::post('/login', 'LoginController@login');
+
+Route::get('/user_management', 'UserController@index');

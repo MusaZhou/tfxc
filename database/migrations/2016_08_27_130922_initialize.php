@@ -25,6 +25,7 @@ class Initialize extends Migration
         	$table->string('wechat_icon')->nullable();
         	$table->string('open_id')->nullable();
         	$table->integer('gender')->unsigned()->nullable();
+        	$table->string('note')->nullable();
         	
         	$table->softDeletes();
         });
