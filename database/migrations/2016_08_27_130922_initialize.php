@@ -41,7 +41,7 @@ class Initialize extends Migration
         	$table->decimal('price')->unsigned()->nullable();
         	$table->integer('status')->unsigned()->nullable();
         	$table->integer('user_id')->unsigned()->nullable();
-        	$table->dateTime('payment_time')->unsigned()->nullable();
+        	$table->dateTime('payment_time')->nullable();
         	$table->integer('payment_type_id')->unsigned()->nullable();
         	
         	$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
@@ -80,7 +80,6 @@ class Initialize extends Migration
         	$table->decimal('price')->unsigned()->nullable();
         	$table->integer('user_id')->unsigned()->nullable();
         	$table->integer('activity_id')->unsigned()->nullable();
-        	$table->dateTime('acitivty_time')->nullable();
         	$table->string('note')->nullable();
         	$table->integer('payment_type_id')->unsigned()->nullable();
         	$table->dateTime('payment_time')->nullable();
@@ -88,6 +87,14 @@ class Initialize extends Migration
         	$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         	$table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
         	$table->foreign('payment_type_id')->references('id')->on('payment_types')->onDelete('cascade');
+        	
+        	$table->softDeletes();
+        });
+        
+        Schema::create('admins', function(Blueprint $table){
+        	$table->increments('id');
+        	$table->string('name');
+        	$table->string('password');
         	
         	$table->softDeletes();
         });
@@ -100,6 +107,7 @@ class Initialize extends Migration
      */
     public function down()
     {
+    	Schema::drop('admins');
         Schema::drop('activity_orders');
         Schema::drop('activities');
         Schema::drop('vip_periods');

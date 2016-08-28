@@ -15,6 +15,14 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
+    
+    protected $adminNamespace = 'App\Http\Controllers\Admin';
+    
+    protected $userNamespace = 'App\Http\Controllers\User';
+    
+    protected $wechatNamespace = 'App\Http\Controllers\Wechat';
+    
+    protected $generalNamespace = 'App\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -35,11 +43,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapWebRoutes();
+//         $this->mapWebRoutes();
 
-        $this->mapApiRoutes();
+//         $this->mapApiRoutes();
 
-        //
+    	$this->mapAdminRoutes();
+    	$this->mapGeneralRoutes();
+    	$this->mapUserRoutes();
+    	$this->mapWechatRoutes();
     }
 
     /**
@@ -57,6 +68,48 @@ class RouteServiceProvider extends ServiceProvider
         ], function ($router) {
             require base_path('routes/web.php');
         });
+    }
+    
+    protected function mapAdminRoutes()
+    {
+    	Route::group([
+    			'middleware' => 'web',
+    			'namespace' => $this->adminNamespace,
+    			'prefix' => 'admin',
+    	], function ($router) {
+    		require base_path('routes/admin.php');
+    	});
+    }
+    
+    protected function mapUserRoutes()
+    {
+    	Route::group([
+    			'middleware' => 'web',
+    			'namespace' => $this->userNamespace,
+    			'prefix' => 'user',
+    	], function ($router) {
+    		require base_path('routes/user.php');
+    	});
+    }
+    
+    protected function mapWechatRoutes()
+    {
+    	Route::group([
+    			'middleware' => 'web',
+    			'namespace' => $this->wechatNamespace,
+    			'prefix' => 'wechat',
+    	], function ($router) {
+    		require base_path('routes/wechat.php');
+    	});
+    }
+    
+    protected function mapGeneralRoutes()
+    {
+    	Route::group([
+    			'namespace' => $this->generalNamespace
+    	], function ($router) {
+    		require base_path('routes/general.php');
+    	});
     }
 
     /**
