@@ -11,17 +11,134 @@
 @endsection
 
 @section('content')
+	<!-- Add User Modal -->
+	<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="addUserLabel">添加用户</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="alert alert-danger" role="alert" id="errorAddUser"></div>
+	        <form id="addUserForm" name="addUserForm" role="form" action="/admin/add_user" method="post">
+	      		{{ csrf_field() }}
+	      		<div class="form-group">
+	      			<label>手机号码 * </label>
+	      			<input id="addUserPhone" name="phone" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>姓名 </label>
+	      			<input id="addUserName" name="name" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>职位 </label>
+	      			<input id="addUserJob" name="job" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>单位 </label>
+	      			<input id="addUserOrganization" name="organization" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>驻地 </label>
+	      			<input id="addUserLocation" name="location" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>邮箱 </label>
+	      			<input id="addUserEmail" name="email" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>性别 </label>
+	      			<select id="addUserGender" name="gender" class="form-control" type="select">
+	      				<option value="1">男</option>
+	      				<option value="2">女</option>
+	      			</select>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>备注 </label>
+	      			<input id="addUserNote" name="note" class="form-control" type="text"/>
+	      		</div>
+	      	</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	        <button type="button" class="btn btn-primary" id="addUserSubmit" onclick="addUser()">确定</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	
+	<!-- Edit User Modal -->
+	<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="editUserLabel">编辑用户</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="alert alert-danger" role="alert" id="errorEditUser"></div>
+	        <form id="editUserForm" name="editUserForm" role="form" action="/admin/edit_user" method="post">
+	      		{{ csrf_field() }}
+	      		<input id="editUserId", name="userId" type="hidden"/>
+	      		<div class="form-group">
+	      			<label>手机号码 * </label>
+	      			<input id="editUserPhone" name="phone" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>姓名 </label>
+	      			<input id="editUserName" name="name" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>职位 </label>
+	      			<input id="editUserJob" name="job" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>单位 </label>
+	      			<input id="editUserOrganization" name="organization" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>驻地 </label>
+	      			<input id="editUserLocation" name="location" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>邮箱 </label>
+	      			<input id="editUserEmail" name="email" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>性别 </label>
+	      			<select id="editUserGender" name="gender" class="form-control" type="select">
+	      				<option value="1">男</option>
+	      				<option value="2">女</option>
+	      			</select>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>备注 </label>
+	      			<input id="editUserNote" name="note" class="form-control" type="text"/>
+	      		</div>
+	      	</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	        <button type="button" class="btn btn-primary" id="editUserSubmit" onclick="editUser()">确定</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 	<!--      Main Content          -->
 	 <div class="row">
            	<div class="col-lg-12">
                 <h1 class="page-header">客户</h1>
             </div>
      </div>
-            <div class="row" style="margin-bottom: 10px;">
-                <div class="col-lg-1">
-                    <button type="button" class="btn btn-primary" onclick="goToAddUser()">
-                    	<i class="fa fa-plus"> 添加用户</i>
+            <div class="row" style="margin: 5px;">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">
+                    	添加用户
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="showEditUser()">
+                    	编辑用户信息
                     </button>
                 </div>
             </div>
@@ -39,6 +156,7 @@
                                 <table class="table table-striped table-bordered table-hover" id="user_list">
                                     <thead>
                                         <tr>
+                                        	<th></th>
                                             <th>ID</th>
                                             <th>姓名</th>
                                             <th>手机号码</th>
@@ -50,12 +168,12 @@
                                             <th>性别</th>
                                             <th>会员</th>
                                             <th>备注</th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     	@foreach ( $userList as $user)
                                         <tr>
+                                        	<td><input type="radio" name="userRadio" value="{{$user->id}}"></td>
                                             <td>{{ $user->id }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->phone }}</td>
@@ -67,11 +185,6 @@
                                             <td>{{ $user->gender == 1 ? '男' : '女' }}</td>
                                             <td>{{ $user->isVip() ? '是' : '否' }}</td>
                                             <td>{{ $user->note }}</td>
-                                          	<td>
-                                          		<a href="/admin/edit_user/{{ $user->id }}">
-                                          			<i class="fa fa-pencil-square-o fa-lg"></i>
-                                          		</a>
-                                          	</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -93,174 +206,104 @@
 	
     <script>
     
-    $(document).ready(function() {
-        $('#user_list').DataTable({
-	        	"autoWidth": false,
-	        	"columnDefs": [
-	    	               { "width": "5%", "targets": 0},
-	    	               { "width": "10%", "targets": 1},
-	    	               { "width": "10%", "targets": 2},
-	    	               { "width": "10%", "targets": 3},
-	    	               { "width": "10%", "targets": 4},
-	    	               { "width": "10%", "targets": 5},
-	    	               { "width": "10%", "targets": 6},
-	    	               { "width": "10%", "targets": 7},
-	    	               { "width": "5%", "targets": 8},
-	    	               { "width": "5%", "targets": 9},
-	    	               { "width": "10%", "targets": 10},
-	    	               { "width": "5%", "targets": 11},
-	    	               ],
-                responsive: true,
-                "pageLength": 25,
-                "order": [[0, "desc"]],
-                language:{
-                	"decimal":        "",
-                    "emptyTable":     "目前没有数据",
-                    "info":           "显示 _START_ 到 _END_ 共 _TOTAL_ 条数据",
-                    "infoEmpty":      "显示 0 到 0 共 0 条数据",
-                    "infoFiltered":   "(从 _MAX_ 条数据中过滤)",
-                    "infoPostFix":    "",
-                    "thousands":      ",",
-                    "lengthMenu":     "显示 _MENU_ 条数据",
-                    "loadingRecords": "加载中...",
-                    "processing":     "处理中...",
-                    "search":         "搜索:",
-                    "zeroRecords":    "没有找到结果",
-                    "paginate": {
-                        "first":      "首页",
-                        "last":       "末页",
-                        "next":       "下一页",
-                        "previous":   "前一页"
-                    },
-                    "aria": {
-                        "sortAscending":  ": 激活升序排列",
-                        "sortDescending": ": 激活降序排列"
-                    }
-           		},
-        });
-
-// 		$('#changePasswordSubmit').click(function(e){
-// 			$('#changePasswordForm').submit();
-// 		});
-
-// 		$('#changePasswordForm').submit(function(e){
-// 			var result = validateChangePassword();
-// 			if(result){
-// 				$('#errorChangePassword').hide();
-// 				return true;
-// 			}else{
-// 				$('#errorChangePassword').show();
-// 				return false;
-// 			}
-// 		});
+    $(function() {
+        var columnDefArray = [
+							   { "width": "5%", "targets": 0},
+    	    	               { "width": "5%", "targets": 1},
+    	    	               { "width": "10%", "targets": 2},
+    	    	               { "width": "10%", "targets": 3},
+    	    	               { "width": "10%", "targets": 4},
+    	    	               { "width": "10%", "targets": 5},
+    	    	               { "width": "5%", "targets": 6},
+    	    	               { "width": "10%", "targets": 7},
+    	    	               { "width": "15%", "targets": 8},
+    	    	               { "width": "5%", "targets": 9},
+    	    	               { "width": "5%", "targets": 10},
+    	    	               { "width": "10%", "targets": 11},
+    	    	               ];
+        
+    	initializeDataTable($('#user_list'), columnDefArray, 25, [[1, "desc"]]);
 		
-// 		$('#errorChangePassword').hide();
+		$('#errorAddUser').hide();
+		$('#errorEditUser').hide();
     });
 
-// 	function validateChangePassword(){
-// 		var password = $('#changePasswordPassword').val().trim();
-// 		var confirmPassword = $('#changePasswordConfirmPassword').val().trim();
+    function addUser(){
+        var result = validateAddUser();
 
-// 		if(password == '' || confirmPassword == ''){
-// 			$('#errorChangePassword').text('请完成必填项');
-// 			return false;
-// 		}
+        if(result){
+        	$('#errorAddUser').hide();
+        	$('#addUserForm').submit();
+       	}else{
+           	$('#errorAddUser').show();
+       	}
+    }
 
-// 		if(password != confirmPassword){
-// 			$('#errorChangePassword').text('密码不相同');
-// 			return false;
-// 		}
+	function validateAddUser(){
+		var phone = $('#addUserPhone').val().trim();
 
-// 		return true;
-// 	}
-
-// 	function changePassword(mobile, userId){
-// 		$('#changePasswordUserId').val(userId);
-// 		$('#changePasswordMobile').text(mobile);
-// 	}
-
-	function checkAllNormalUser(){
-		$('input[name="normalUserIdCheck[]"]').prop('checked', true);
-	}
-
-	function uncheckAllNormalUser(){
-		$('input[name="normalUserIdCheck[]"]').prop('checked', false);
-	}
-
-	function sendMessage(){
-		var normalUserIdElements = $('input[name="normalUserIdCheck[]"]:checked').get() || [];
-		var shopUserIdElements = $('input[name="shopUserIdCheck[]"]:checked').get() || [];
-		var exhibitionUserIdElements = $('input[name="exhibitionUserIdCheck[]"]:checked').get() || [];
-
-		var userIdElements = (normalUserIdElements.concat(shopUserIdElements)).concat(exhibitionUserIdElements);
-		
-// 		var userIdElements = [];
-		
-// 		normalUserIdElements.each(function(){
-// 			userIdElements.push($(this));
-// 		});
-
-// 		shopUserIdElements.each(function(){
-// 			userIdElements.push($(this));
-// 		});
-
-// 		exhibitionUserIdElements.each(function(){
-// 			userIdElements.push($(this));
-// 		});
-		
-		if(userIdElements.length == 0){
-			bootbox.alert('请选择发送用户');
-			return;
-		}else if(userIdElements.length > 500){
-			bootbox.alert('最大选择500人');
-		}else{
-			var userIds = [];
-			$(userIdElements).each(function(){
-				userIds.push($(this).val());
-			});
-			
-			bootbox.prompt("消息内容:", function(result) {                
-	    		  if (result !== null) {                                             
-	    			  $.ajax({
-	    					url: '/send_user_message',
-	    					method: 'POST',
-	    					data: { 
-	    							content: result,
-	    							userIds: userIds,
-	    							_token: "{{ csrf_token() }}",
-	    							 }
-	    				}).done(function(data){
-	    					if(data == 1){
-	    						bootbox.alert("发送成功");
-	    					}else{
-								bootbox.alert("回复失败");
-	        				}
-	    				});                             
-	    		  } 
-	    		});
+		if(phone == ''){
+			$('#errorAddUser').text('请填写电话');
+			return false;
 		}
+
+		return true;
 	}
 
-	function sendMessageToAll(){
-			
-		bootbox.prompt("发送给所有用户的消息:", function(result) {                
-    		  if (result !== null) {                                             
-    			  $.ajax({
-    					url: '/send_broadcast_user_message',
-    					method: 'POST',
-    					data: { 
-    							content: result,
-    							_token: "{{ csrf_token() }}",
-    							 }
-    				}).done(function(data){
-    					if(data == 1){
-    						bootbox.alert("发送成功");
-    					}else{
-							bootbox.alert("回复失败");
-        				}
-    				});                             
-    		  } 
-    		});
+	function showEditUser(){
+        var checkedUser = $('input[name="userRadio"]:checked');
+		if(checkedUser.length == 0){
+			bootbox.alert('请选择用户');
+		}else{
+			var userId = checkedUser.val();
+
+			$.ajax({
+				url: '/admin/get_user_info_by_id',
+				method: 'GET',
+				data: { 
+						userId: userId,
+						_token: "{{ csrf_token() }}",
+						 },
+				dataType: 'JSON',
+			}).done(function(response){
+				if(response.status == 1){
+					$('#editUserId').val(response.data.id);
+					$('#editUserName').val(response.data.name);
+					$('#editUserPhone').val(response.data.phone);
+					$('#editUserJob').val(response.data.job);
+					$('#editUserOrganization').val(response.data.organization);
+					$('#editUserLocation').val(response.data.location);
+					$('#editUserEmail').val(response.data.email);
+					$('#editUserGender').val(response.data.gender);
+					$('#editUserNote').val(response.data.note);
+
+					$('#editUserModal').modal();
+				}
+			});
+		}
+    }
+
+	function editUser(){
+        var result = validateEditUser();
+
+        if(result){
+        	$('#errorEditUser').hide();
+        	$('#editUserForm').submit();
+       	}else{
+           	$('#errorEditUser').show();
+       	}
+    }
+
+	function validateEditUser(){
+		var phone = $('#editUserPhone').val().trim();
+
+		if(phone == ''){
+			$('#errorEditUser').text('请填写电话');
+			return false;
+		}
+
+		return true;
 	}
+
     </script>
 @endsection

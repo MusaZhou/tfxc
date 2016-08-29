@@ -26,6 +26,8 @@ class Initialize extends Migration
         	$table->string('open_id')->nullable();
         	$table->integer('gender')->unsigned()->nullable();
         	$table->string('note')->nullable();
+        	$table->dateTime('created_at')->nullable();
+        	$table->dateTime('updated_at')->nullable();
         	
         	$table->softDeletes();
         });
@@ -33,6 +35,8 @@ class Initialize extends Migration
         Schema::create('payment_types', function(Blueprint $table){
         	$table->increments('id');
         	$table->string('name')->nullable();
+        	$table->dateTime('created_at')->nullable();
+        	$table->dateTime('updated_at')->nullable();
         	
         	$table->softDeletes();
         });
@@ -44,6 +48,8 @@ class Initialize extends Migration
         	$table->integer('user_id')->unsigned()->nullable();
         	$table->dateTime('payment_time')->nullable();
         	$table->integer('payment_type_id')->unsigned()->nullable();
+        	$table->dateTime('created_at')->nullable();
+        	$table->dateTime('updated_at')->nullable();
         	
         	$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         	$table->foreign('payment_type_id')->references('id')->on('payment_types')->onDelete('cascade');
@@ -57,6 +63,8 @@ class Initialize extends Migration
         	$table->date('end_date')->nullable();
         	$table->integer('user_id')->unsigned()->nullable();
         	$table->integer('vip_order_id')->unsigned()->nullable();
+        	$table->dateTime('created_at')->nullable();
+        	$table->dateTime('updated_at')->nullable();
         	
         	$table->foreign('user_id')->references('id')->on('users')->onDeletes('cascade');
         	$table->foreign('vip_order_id')->references('id')->on('vip_orders')->onDelete('cascade');
@@ -72,6 +80,8 @@ class Initialize extends Migration
         	$table->dateTime('start_time')->nullable();
         	$table->dateTime('end_time')->nullable();
         	$table->string('address')->nullable();
+        	$table->dateTime('created_at')->nullable();
+        	$table->dateTime('updated_at')->nullable();
         	
         	$table->softDeletes();
         });
@@ -84,6 +94,8 @@ class Initialize extends Migration
         	$table->string('note')->nullable();
         	$table->integer('payment_type_id')->unsigned()->nullable();
         	$table->dateTime('payment_time')->nullable();
+        	$table->dateTime('created_at')->nullable();
+        	$table->dateTime('updated_at')->nullable();
         	
         	$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         	$table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
@@ -96,6 +108,8 @@ class Initialize extends Migration
         	$table->increments('id');
         	$table->string('name');
         	$table->string('password');
+        	$table->dateTime('created_at')->nullable();
+        	$table->dateTime('updated_at')->nullable();
         	
         	$table->softDeletes();
         });

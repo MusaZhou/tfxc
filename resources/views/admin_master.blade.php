@@ -71,16 +71,17 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                            <li><a href="/admin/user_management"><i class="fa fa-user fa-fw"></i> 客户列表</a>
-                        	<li>
-                            	<a href="#"><i class="fa fa-university fa-fw"></i> 学校管理<span class="fa arrow"></span></a>
-                            	<ul class="nav nav-second-level">
-                            		<li><a href="/backend/normal_school_management"> 普通学校</a></li>
-                            		<li><a href="/backend/art_school_management"> 艺术学校</a></li>
-                            	</ul>
-                            </li>
+                            <li><a href="/admin/user_management"><i class="fa fa-user fa-fw"></i> 用户管理</a>
+                            <li><a href="/admin/activity_management"><i class="fa fa-university fa-fw"></i> 活动管理</a>
+<!--                         	<li> -->
+<!--                             	<a href="#"><i class="fa fa-university fa-fw"></i> 学校管理<span class="fa arrow"></span></a> -->
+<!--                             	<ul class="nav nav-second-level"> -->
+<!--                             		<li><a href="/backend/normal_school_management"> 普通学校</a></li> -->
+<!--                             		<li><a href="/backend/art_school_management"> 艺术学校</a></li> -->
+<!--                             	</ul> -->
+<!--                             </li> -->
                             
-                            <li><a href="/backend/message_management"><i class="fa fa-comments-o fa-fw"></i> 用户反馈</a>                        
+<!--                             <li><a href="/backend/message_management"><i class="fa fa-comments-o fa-fw"></i> 用户反馈</a>                         -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
