@@ -94,6 +94,7 @@ class Initialize extends Migration
         	$table->string('note')->nullable();
         	$table->integer('payment_type_id')->unsigned()->nullable();
         	$table->dateTime('payment_time')->nullable();
+        	$table->integer('status')->unsigned()->default(1);
         	$table->dateTime('created_at')->nullable();
         	$table->dateTime('updated_at')->nullable();
         	

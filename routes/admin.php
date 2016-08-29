@@ -36,3 +36,7 @@ Route::get('/get_activity_info_by_id', 'ActivityController@getActivityInfoById')
 Route::post('/edit_activity', 'ActivityController@editActivity');
 
 Route::post('/delete_activity', 'ActivityController@deleteActivity');
+
+//------------------------------------ Activity Order Controller ----------------------------------
+
+Route::get('/get_activity_order_table_data/{activityId}', 'ActivityOrderController@getActivityOrderTableData');

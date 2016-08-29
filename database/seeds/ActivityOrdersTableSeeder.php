@@ -19,7 +19,8 @@ class ActivityOrdersTableSeeder extends Seeder
 						'activity_id' => 1,
 						'payment_time' => '2016-08-28 12:00:00',
 						'note' => 'fsdaf',
-						'payment_type_id' => 1 
+						'payment_type_id' => 1,
+        				'status' => 1,
 				],
 				[ 
 						'id' => 2,
@@ -28,7 +29,8 @@ class ActivityOrdersTableSeeder extends Seeder
 						'activity_id' => 2,
 						'payment_time' => '2016-08-28 12:00:00',
 						'note' => 'fsdaf',
-						'payment_type_id' => 2 
+						'payment_type_id' => 2,
+						'status' => 2,
 				],
 				[ 
 						'id' => 3,
@@ -37,7 +39,8 @@ class ActivityOrdersTableSeeder extends Seeder
 						'activity_id' => 3,
 						'payment_time' => '2016-08-28 12:00:00',
 						'note' => 'fsdaf',
-						'payment_type_id' => 3 
+						'payment_type_id' => 3,
+						'status' => 2,
 				],
 				[ 
 						'id' => 4,
@@ -46,7 +49,8 @@ class ActivityOrdersTableSeeder extends Seeder
 						'activity_id' => 1,
 						'payment_time' => '2016-08-28 12:00:00',
 						'note' => 'fsdaf',
-						'payment_type_id' => 1 
+						'payment_type_id' => 1,
+						'status' => 2,
 				],
         		
         ]);

@@ -127,6 +127,9 @@
                     <button type="button" class="btn btn-primary" onclick="showDeleteActivity()">
                     	删除活动
                     </button>
+                    <button type="button" class="btn btn-primary" onclick="showActivityOrder()">
+                    	报名信息
+                    </button>
                 </div>
             </div>
             <!-- /.row -->
@@ -174,6 +177,53 @@
                 </div>
             </div>
             
+            <div class="row activity_order_row" style="margin: 5px;">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addActivityOrderModal">
+                    	添加活动报名
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="showEditActivityOrder()">
+                    	编辑活动报名
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="showDeleteActivityOrder()">
+                    	删除活动报名
+                    </button>
+                </div>
+            </div>
+            <!-- /.row -->
+            
+            <div class="row activity_order_row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            	活动报名列表
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <table class="table table-striped table-bordered table-hover" id="activity_order_list">
+                                    <thead>
+                                        <tr>
+                                        	<th></th>
+                                            <th>ID</th>
+                                            <th>活动名称</th>
+                                            <th>姓名</th>
+                                            <th>电话</th>
+                                            <th>价格</th>
+                                            <th>支付方式</th>
+                                            <th>支付时间</th>
+                                            <th>备注</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
 @endsection
 
 @section('js')
@@ -191,10 +241,12 @@
 	<script src="{{ URL::asset('js/datepair/jquery.datepair.min.js') }}"></script>
 	
     <script>
+    var activityOrderTable;
     
     $(function() {
-        var columnDefArray = [
-							   { "width": "5%", "targets": 0},
+        // activity table defination
+        var columnDefArray_activity = [
+							   { "width": "5%", "targets": 0, "orderable": false,},
     	    	               { "width": "5%", "targets": 1},
     	    	               { "width": "20%", "targets": 2},
     	    	               { "width": "20%", "targets": 3},
@@ -204,7 +256,30 @@
     	    	               { "width": "20%", "targets": 7},
     	    	               ];
         
-    	initializeDataTable($('#activity_list'), columnDefArray, 25, [[1, "desc"]]);
+    	initializeDataTable($('#activity_list'), columnDefArray_activity, 25, [[1, "desc"]]);
+
+    	// activity order table defination
+    	
+    	var columnDefArray_activityOrder = [
+							   { "width": "5%", 
+								 "targets": 0, 
+								 "orderable": false, 
+								 "data": "id",
+								 "render": function(data, type, full, meta){
+												return '<input type="radio" name="activityOrderRadio" value="' + data + '">'
+											}
+								},
+    	    	               { "width": "5%", "targets": 1, "data": "id",},
+    	    	               { "width": "20%", "targets": 2, "data": "activityName",},
+    	    	               { "width": "10%", "targets": 3, "data": "userName",},
+    	    	               { "width": "10%", "targets": 4, "data": "userPhone",},
+    	    	               { "width": "10%", "targets": 5, "data": "price",},
+    	    	               { "width": "10%", "targets": 6, "data": "paymentType",},
+    	    	               { "width": "10%", "targets": 7, "data": "paymentTime",},
+    	    	               { "width": "20%", "targets": 8, "data": "note",},
+    	    	               ];
+        
+    	activityOrderTable = initializeAjaxDataTable($('#activity_order_list'), columnDefArray_activityOrder, 25, [[1, "desc"]]);
 		
 		$('#errorAddActivity').hide();
 		$('#errorEditActivity').hide();
@@ -220,6 +295,8 @@
 		
 		$('#addActivityTime').datepair();
 		$('#editActivityTime').datepair();
+
+		$('.activity_order_row').hide();
     });
 
     function addActivity(){
@@ -351,5 +428,17 @@
 		}
 	}
 
+	function showActivityOrder(){
+		var checkedActivity = $('input[name="activityRadio"]:checked');
+		if(checkedActivity.length == 0){
+			bootbox.alert('请选择活动');
+		}else{
+			var activityId = checkedActivity.val();
+
+			activityOrderTable.ajax.url('/admin/get_activity_order_table_data/' + activityId).load();
+
+			$('.activity_order_row').show();
+		}
+	}
     </script>
 @endsection

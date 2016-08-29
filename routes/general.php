@@ -24,3 +24,5 @@ Route::any('/wechat/create_menu', 'Wechat\WechatController@createMenu');
 Route::post('/wechat/course_order_notify', 'Wechat\OrderController@courseOrderNotify');
 
 Route::post('/wechat/book_order_notify', 'Wechat\OrderController@bookOrderNotify');
+
+Route::get('/emptyTableData', 'GeneralController@emptyTableData');

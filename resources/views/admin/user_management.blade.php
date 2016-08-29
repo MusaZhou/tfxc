@@ -129,7 +129,7 @@
 	<!--      Main Content          -->
 	 <div class="row">
            	<div class="col-lg-12">
-                <h1 class="page-header">客户</h1>
+                <h1 class="page-header">用户</h1>
             </div>
      </div>
             <div class="row" style="margin: 5px;">

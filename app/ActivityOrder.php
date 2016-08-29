@@ -19,6 +19,10 @@ class ActivityOrder extends Model
 		return $this->belongsTo('App\PaymentType');
 	}
 	
+	public function user(){
+		return $this->belongsTo('App\User');
+	}
+	
 	public function softDelete(){
 		return $this->delete();
 	}
