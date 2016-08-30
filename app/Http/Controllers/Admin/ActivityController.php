@@ -7,13 +7,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Activity;
+use App\User;
+use App\PaymentType;
 
 class ActivityController extends Controller
 {
     public function index(Request $request){
 		$activityList = Activity::all();
+		$userList = User::all();
+		$paymentTypeList = PaymentType::all();
 		
-		return view('admin.activity_management', ['activityList' => $activityList]);
+		return view('admin.activity_management', ['activityList' => $activityList, 'userList' => $userList, 'paymentTypeList' => $paymentTypeList]);
 	}
 	
 	public function addActivity(Request $request){

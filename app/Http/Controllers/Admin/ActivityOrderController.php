@@ -35,4 +35,81 @@ class ActivityOrderController extends Controller
 		
 		return ['data' => $tableData];
     }
+    
+    public function addActivityOrder(Request $request){
+    	$activityId = $request->activityId;
+    	$userId = $request->userId;
+    	$paymentTypeId =$request->paymentTypeId;
+    	$price = $request->price;
+    	$paymentDate = $request->paymentDate;
+    	$paymentTime = $request->paymentTime;
+    	$note = $request->note;
+    	
+    	$activityOrder = new ActivityOrder();
+    	$activityOrder->activity_id = $activityId;
+    	$activityOrder->user_id = $userId;
+    	$activityOrder->payment_type_id = $paymentTypeId;
+    	$activityOrder->payment_time = $paymentDate.' '.$paymentTime;
+    	$activityOrder->note = $note;
+    	$activityOrder->price = $price;
+    	$activityOrder->status = 2;
+    	
+    	$activityOrder->save();
+    	
+    	return redirect('/admin/activity_management');
+    }
+    
+    public function getActivityOrderById(Request $request, $activityOrderId){
+    	$activityOrder = ActivityOrder::find($activityOrderId);
+    	
+    	$data = collect();
+    	$data->put('id', $activityOrderId);
+    	$data->put('activityId', $activityOrder->activity_id);
+    	$data->put('activityName', $activityOrder->activity->name);
+    	$data->put('userId', $activityOrder->user_id);
+    	$data->put('price', $activityOrder->price);
+    	$data->put('paymentTypeId', $activityOrder->payment_type_id);
+    	$data->put('paymentDateTime', $activityOrder->payment_time);
+    	$data->put('note', $activityOrder->note);
+    	
+    	$result = collect();
+    	$result->put('status', 1);
+    	$result->put('data', $data);
+    	
+    	return $result->toJson();
+    }
+    
+    public function editActivityOrder(Request $request){
+    	$activityOrderId = $request->activityOrderId;
+    	$activityId = $request->activityId;
+    	$userId = $request->userId;
+    	$paymentTypeId =$request->paymentTypeId;
+    	$price = $request->price;
+    	$paymentDate = $request->paymentDate;
+    	$paymentTime = $request->paymentTime;
+    	$note = $request->note;
+    	
+//     	Log::info('activity id:'.$activityId);
+//     	Log::info('request all:'.$request->all());
+    	 
+    	$activityOrder = ActivityOrder::find($activityOrderId);
+    	$activityOrder->activity_id = $activityId;
+    	$activityOrder->user_id = $userId;
+    	$activityOrder->payment_type_id = $paymentTypeId;
+    	$activityOrder->payment_time = $paymentDate.' '.$paymentTime;
+    	$activityOrder->note = $note;
+    	$activityOrder->price = $price;
+    	$activityOrder->status = 2;
+    	 
+    	$activityOrder->save();
+    	 
+    	return redirect('/admin/activity_management');
+    }
+    
+    public function deleteActivityOrder(Request $request){
+    	$activityOrder = ActivityOrder::find($request->activityOrderId);
+    	$activityOrder->softDelete();
+    	
+    	return ['status' => 1];
+    }
 }

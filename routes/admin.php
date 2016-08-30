@@ -40,3 +40,11 @@ Route::post('/delete_activity', 'ActivityController@deleteActivity');
 //------------------------------------ Activity Order Controller ----------------------------------
 
 Route::get('/get_activity_order_table_data/{activityId}', 'ActivityOrderController@getActivityOrderTableData');
+
+Route::post('/add_activity_order', 'ActivityOrderController@addActivityOrder');
+
+Route::get('/get_activity_order_by_id/{activityOrderId}', 'ActivityOrderController@getActivityOrderById');
+
+Route::post('/edit_activity_order', 'ActivityOrderController@editActivityOrder');
+
+Route::post('/delete_activity_order', 'ActivityOrderController@deleteActivityOrder');

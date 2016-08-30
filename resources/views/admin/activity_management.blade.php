@@ -109,6 +109,121 @@
 	    </div>
 	  </div>
 	</div>
+	
+	<!-- Add Activity Order Modal -->
+	<div class="modal fade" id="addActivityOrderModal" tabindex="-1" role="dialog" aria-labelledby="addActivityOrderLabel">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="addActivityOrderLabel">添加活动报名</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="alert alert-danger" role="alert" id="errorAddActivityOrder"></div>
+	        <form id="addActivityOrderForm" name="addActivityOrderForm" role="form" action="/admin/add_activity_order" method="post">
+	      		{{ csrf_field() }}
+	      		<div class="form-group">
+	      			<lable style="font-weight: bold">活动名称: <span id="addActivityOrderActivityName"></span></lable>
+	      			<input id="addActivityOrderActivityId" name="activityId" type="hidden"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>用户 *</label>
+	      			<select id="addActivityOrderUserId" name="userId" class="form-control">
+	      				@foreach($userList as $user)
+	      				<option value="{{ $user->id }}">{{ $user->id.'.'.$user->name.'.'.$user->phone }}</option>
+	      				@endforeach
+	      			</select>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>支付方式  *</label>
+	      			<select id="addActivityOrderPaymentTypeId" name="paymentTypeId" class="form-control">
+	      				@foreach($paymentTypeList as $paymentType)
+	      				<option value="{{ $paymentType->id }}">{{ $paymentType->name }}</option>
+	      				@endforeach
+	      			</select> 
+	      		</div>
+	      		<div class="form-group">
+	      			<label>支付金额  *</label>
+	      			<input id="addActivityOrderPrice" name="price" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>支付时间  *</label>
+	      			<p>
+		      			<input type="text" class="date" id="addActivityOrderPaymentDate" name="paymentDate"/>
+	      				<input type="text" class="time" id="addActivityOrderPaymentTime" name="paymentTime"/>
+	      			</p>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>备注  </label>
+	      			<input id="addActivityOrderNote" name="note" class="form-control" type="text"/>
+	      		</div>
+	      	</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	        <button type="button" class="btn btn-primary" id="addActivityOrderSubmit" onclick="addActivityOrder()">确定</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- Edit Activity Order Modal -->
+	<div class="modal fade" id="editActivityOrderModal" tabindex="-1" role="dialog" aria-labelledby="editActivityOrderLabel">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="editActivityOrderLabel">编辑活动报名</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="alert alert-danger" role="alert" id="errorEditActivityOrder"></div>
+	        <form id="editActivityOrderForm" name="editActivityOrderForm" role="form" action="/admin/edit_activity_order" method="post">
+	      		{{ csrf_field() }}
+	      		<div class="form-group">
+	      			<lable style="font-weight: bold">活动名称: <span id="editActivityOrderActivityName"></span></lable>
+	      			<input id="editActivityOrderActivityId" name="activityId" type="hidden"/>
+	      			<input id="editActivityOrderId" name="activityOrderId" type="hidden"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>用户 *</label>
+	      			<select id="editActivityOrderUserId" name="userId" class="form-control">
+	      				@foreach($userList as $user)
+	      				<option value="{{ $user->id }}">{{ $user->id.'.'.$user->name.'.'.$user->phone }}</option>
+	      				@endforeach
+	      			</select>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>支付方式  *</label>
+	      			<select id="editActivityOrderPaymentTypeId" name="paymentTypeId" class="form-control">
+	      				@foreach($paymentTypeList as $paymentType)
+	      				<option value="{{ $paymentType->id }}">{{ $paymentType->name }}</option>
+	      				@endforeach
+	      			</select> 
+	      		</div>
+	      		<div class="form-group">
+	      			<label>支付金额  *</label>
+	      			<input id="editActivityOrderPrice" name="price" class="form-control" type="text"/>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>支付时间  *</label>
+	      			<p>
+		      			<input type="text" class="date" id="editActivityOrderPaymentDate" name="paymentDate"/>
+	      				<input type="text" class="time" id="editActivityOrderPaymentTime" name="paymentTime"/>
+	      			</p>
+	      		</div>
+	      		<div class="form-group">
+	      			<label>备注  </label>
+	      			<input id="editActivityOrderNote" name="note" class="form-control" type="text"/>
+	      		</div>
+	      	</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	        <button type="button" class="btn btn-primary" id="editActivityOrderSubmit" onclick="editActivityOrder()">确定</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 	<!--      Main Content          -->
 	 <div class="row">
@@ -129,6 +244,9 @@
                     </button>
                     <button type="button" class="btn btn-primary" onclick="showActivityOrder()">
                     	报名信息
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="showAddActivityOrder()">
+                    	添加活动报名
                     </button>
                 </div>
             </div>
@@ -161,7 +279,7 @@
                                         <tr>
                                         	<td><input type="radio" name="activityRadio" value="{{$activity->id}}"></td>
                                             <td>{{ $activity->id }}</td>
-                                            <td>{{ $activity->name }}</td>
+                                            <td id="activityNameTD_{{ $activity->id }}">{{ $activity->name }}</td>
                                             <td>{{ $activity->description }}</td>
                                             <td>{{ $activity->price }}</td>
                                             <td>{{ $activity->start_time }}</td>
@@ -179,9 +297,6 @@
             
             <div class="row activity_order_row" style="margin: 5px;">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addActivityOrderModal">
-                    	添加活动报名
-                    </button>
                     <button type="button" class="btn btn-primary" onclick="showEditActivityOrder()">
                     	编辑活动报名
                     </button>
@@ -283,6 +398,8 @@
 		
 		$('#errorAddActivity').hide();
 		$('#errorEditActivity').hide();
+		$('#errorAddActivityOrder').hide();
+		$('#errorEditActivityOrder').hide();
 
 		$('.time').timepicker({
 			'timeFormat': 'H:i',
@@ -438,6 +555,143 @@
 			activityOrderTable.ajax.url('/admin/get_activity_order_table_data/' + activityId).load();
 
 			$('.activity_order_row').show();
+		}
+	}
+
+	function showAddActivityOrder(){
+		var checkedActivity = $('input[name="activityRadio"]:checked');
+		if(checkedActivity.length == 0){
+			bootbox.alert('请选择活动');
+		}else{
+			var activityId = checkedActivity.val();
+			var activityName = $('#activityNameTD_' + activityId).text();
+			
+			$('#addActivityOrderActivityId').val(activityId);
+			$('#addActivityOrderActivityName').text(activityName);
+
+			$('#addActivityOrderModal').modal();
+		}
+	}
+
+	function addActivityOrder(){
+		var result = validateAddActivityOrder();
+
+        if(result){
+        	$('#errorAddActivityOrder').hide();
+        	$('#addActivityOrderForm').submit();
+       	}else{
+           	$('#errorAddActivityOrder').show();
+       	}
+	}
+
+	function validateAddActivityOrder(){
+		var userId = $('#addActivityOrderUserId').val();
+		var paymentTypeId = $('#addActivityOrderPaymentTypeId').val();
+		var price = $('#addActivityOrderPrice').val().trim();
+		var paymentDate = $('#addActivityOrderPaymentDate').val().trim();
+		var paymentTime = $('#addActivityOrderPaymentTime').val().trim();
+
+		if(userId == undefined || paymentTypeId == undefined || price == '' || paymentDate == '' || paymentTime == ''){
+			$('#errorAddActivityOrder').text('请填写必填项');
+			return false;
+		}
+
+		if(price != '' && !$.isNumeric(price)){
+			$('#errorAddActivityOrder').text('价格需为数字');
+			return false;
+		}
+
+		return true;
+	}
+
+	function showEditActivityOrder(){
+        var checkedActivityOrder = $('input[name="activityOrderRadio"]:checked');
+		if(checkedActivityOrder.length == 0){
+			bootbox.alert('请选择活动报名');
+		}else{
+			var activityOrderId = checkedActivityOrder.val();
+
+			$.ajax({
+				url: '/admin/get_activity_order_by_id/' + activityOrderId,
+				method: 'GET',
+				dataType: 'JSON',
+			}).done(function(response){
+				if(response.status == 1){
+					$('#editActivityOrderId').val(response.data.id);
+					$('#editActivityOrderActivityId').val(response.data.activityId);
+					$('#editActivityOrderActivityName').text(response.data.activityName);
+					$('#editActivityOrderUserId').val(response.data.userId);
+					$('#editActivityOrderPaymentTypeId').val(response.data.paymentTypeId);
+					$('#editActivityOrderPrice').val(response.data.price);
+					
+					var paymentDateTime = response.data.paymentDateTime.split(' ');
+					
+					$('#editActivityOrderPaymentDate').val(paymentDateTime[0]);
+					$('#editActivityOrderPaymentTime').val(paymentDateTime[1]);
+					
+					$('#editActivityOrderNote').val(response.data.note);
+
+					$('#editActivityOrderModal').modal();
+				}
+			});
+		}
+    }
+
+	function editActivityOrder(){
+		var result = validateEditActivityOrder();
+
+        if(result){
+        	$('#errorEditActivityOrder').hide();
+        	$('#editActivityOrderForm').submit();
+       	}else{
+           	$('#errorEditActivityOrder').show();
+       	}
+	}
+
+	function validateEditActivityOrder(){
+		var userId = $('#editActivityOrderUserId').val();
+		var paymentTypeId = $('#editActivityOrderPaymentTypeId').val();
+		var price = $('#editActivityOrderPrice').val().trim();
+		var paymentDate = $('#editActivityOrderPaymentDate').val().trim();
+		var paymentTime = $('#editActivityOrderPaymentTime').val().trim();
+
+		if(userId == undefined || paymentTypeId == undefined || price == '' || paymentDate == '' || paymentTime == ''){
+			$('#errorEditActivityOrder').text('请填写必填项');
+			return false;
+		}
+
+		if(price != '' && !$.isNumeric(price)){
+			$('#errorEditActivityOrder').text('价格需为数字');
+			return false;
+		}
+
+		return true;
+	}
+
+	function showDeleteActivityOrder(){
+		var checkedActivityOrder = $('input[name="activityOrderRadio"]:checked');
+		if(checkedActivityOrder.length == 0){
+			bootbox.alert('请选择活动');
+		}else{
+			var activityOrderId = checkedActivityOrder.val();
+
+			bootbox.confirm('确定要删除活动吗?', function(result){
+				if(result){
+					$.ajax({
+						url: '/admin/delete_activity_order',
+						method: 'POST',
+						data: { 
+								activityOrderId: activityOrderId,
+								_token: "{{ csrf_token() }}",
+								 },
+						dataType: 'JSON',
+					}).done(function(response){
+						if(response.status == 1){
+							location.reload();
+						}
+					});
+				}
+			});
 		}
 	}
     </script>
