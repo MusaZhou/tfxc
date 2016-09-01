@@ -168,7 +168,7 @@
 	      		<div class="form-group">
 	      			<label>会员有效期  *</label>
 	      			<p>
-		      			<input type="text" class="date" id="addVipPeriodStartDate" name="startDate"/>
+		      			<input type="text" class="date" id="addVipPeriodStartDate" name="startDate"/> 到
 		      			<input type="text" class="date" id="addVipPeriodEndDate" name="endDate"/>
 	      			</p>
 	      		</div>
@@ -186,7 +186,7 @@
 	  </div>
 	</div>
 	
-	<!-- Edit Activity Order Modal -->
+	<!-- Edit Vip Period Modal -->
 	<div class="modal fade" id="editVipPeriodModal" tabindex="-1" role="dialog" aria-labelledby="editVipPeriodLabel">
 	  <div class="modal-dialog modal-lg" role="document">
 	    <div class="modal-content">
@@ -199,9 +199,9 @@
 	        <form id="editVipPeriodForm" name="editVipPeriodForm" role="form" action="/admin/edit_vip_period" method="post">
 	      		{{ csrf_field() }}
 	      		<div class="form-group">
-	      			<lable style="font-weight: bold">用户: <span id="editVipPeriodActivityName"></span></lable>
+	      			<lable style="font-weight: bold">用户: <span id="editVipPeriodUserName"></span></lable>
 	      			<input id="editVipPeriodUserId" name="userId" type="hidden"/>
-	      			<input id="editVipPeriodId" name="VipPeriodId" type="hidden"/>
+	      			<input id="editVipPeriodId" name="vipPeriodId" type="hidden"/>
 	      		</div>
 	      		<div class="form-group">
 	      			<label>支付方式  *</label>
@@ -225,7 +225,7 @@
 	      		<div class="form-group">
 	      			<label>会员有效期  *</label>
 	      			<p>
-		      			<input type="text" class="date" id="editVipPeriodStartDate" name="startDate"/>
+		      			<input type="text" class="date" id="editVipPeriodStartDate" name="startDate"/>到
 		      			<input type="text" class="date" id="editVipPeriodEndDate" name="endDate"/>
 	      			</p>
 	      		</div>
@@ -566,10 +566,10 @@
 		var paymentDate = $('#addVipPeriodPaymentDate').val().trim();
 		var paymentTime = $('#addVipPeriodPaymentTime').val().trim();
 		var startDate = $('#addVipPeriodStartDate').val().trim();
-		var endTime = $('#addVipPeriodEndTime').val().trim();
+		var endDate = $('#addVipPeriodEndDate').val().trim();
 
 		if(paymentTypeId == undefined || price == '' || paymentDate == '' || paymentTime == ''
-			|| startDate == '' || endTime == ''){
+			|| startDate == '' || endDate == ''){
 			$('#errorAddVipPeriod').text('请填写必填项');
 			return false;
 		}
@@ -597,7 +597,7 @@
 				if(response.status == 1){
 					$('#editVipPeriodId').val(response.data.id);
 					$('#editVipPeriodUserId').val(response.data.userId);
-					$('#editVipPeriodUserName').text(response.data.activityName);
+					$('#editVipPeriodUserName').text(response.data.userName + ' ' + response.data.userPhone);
 					$('#editVipPeriodPaymentTypeId').val(response.data.paymentTypeId);
 					$('#editVipPeriodPrice').val(response.data.price);
 					
@@ -611,7 +611,7 @@
 					
 					$('#editVipPeriodNote').val(response.data.note);
 
-					$('#editActivityOrderModal').modal();
+					$('#editVipPeriodModal').modal();
 				}
 			});
 		}
@@ -634,10 +634,10 @@
 		var paymentDate = $('#editVipPeriodPaymentDate').val().trim();
 		var paymentTime = $('#editVipPeriodPaymentTime').val().trim();
 		var startDate = $('#editVipPeriodStartDate').val().trim();
-		var endTime = $('#editVipPeriodEndTime').val().trim();
+		var endDate = $('#editVipPeriodEndDate').val().trim();
 
 		if(paymentTypeId == undefined || price == '' || paymentDate == '' || paymentTime == ''
-			|| startDate == '' || endTime == ''){
+			|| startDate == '' || endDate == ''){
 			$('#errorEditVipPeriod').text('请填写必填项');
 			return false;
 		}

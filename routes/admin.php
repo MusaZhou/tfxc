@@ -48,3 +48,15 @@ Route::get('/get_activity_order_by_id/{activityOrderId}', 'ActivityOrderControll
 Route::post('/edit_activity_order', 'ActivityOrderController@editActivityOrder');
 
 Route::post('/delete_activity_order', 'ActivityOrderController@deleteActivityOrder');
+
+//------------------------------------ VipPeriod Controller -----------------------------------------
+
+Route::get('/get_vip_period_table_data/{userId}', 'VipPeriodController@getVipPeriodTableData');
+
+Route::get('/get_vip_period_by_id/{vipPeriodId}', 'VipPeriodController@getVipPeriodById');
+
+Route::post('/add_vip_period', 'VipPeriodController@addVipPeriod');
+
+Route::post('/edit_vip_period', 'VipPeriodController@editVipPeriod');
+
+Route::post('/delete_vip_period', 'VipPeriodController@deleteVipPeriod');

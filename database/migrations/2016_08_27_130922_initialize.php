@@ -63,6 +63,7 @@ class Initialize extends Migration
         	$table->date('end_date')->nullable();
         	$table->integer('user_id')->unsigned()->nullable();
         	$table->integer('vip_order_id')->unsigned()->nullable();
+        	$table->string('note')->nullable();
         	$table->dateTime('created_at')->nullable();
         	$table->dateTime('updated_at')->nullable();
         	
