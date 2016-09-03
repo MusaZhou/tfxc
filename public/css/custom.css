@@ -1,0 +1,47 @@
+.title {
+	color: #FFFFFF;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+th {
+	text-align: center;
+}
+
+table {
+	table-layout: fixed;
+}
+
+table tbody td {
+	max-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.activity-title {
+	font-weight: bold;
+	font-size: 1.3em;
+	margin: 10px auto;
+}
+
+.activity-content{
+	padding: 5px;
+}
+
+.header-container{
+	padding: 0px;
+}
+
+.item-label {
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+.item-content{
+	font-size: 1.5em;
+}
+
+.content .row{
+	margin-bottom: 7px;
+}
