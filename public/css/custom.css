@@ -45,3 +45,9 @@ table tbody td {
 .content .row{
 	margin-bottom: 7px;
 }
+
+.border-form {
+	border: 1px solid #BDBDBD;
+	border-radius: 5px;
+	margin: 50px 20px 20px 20px;
+}

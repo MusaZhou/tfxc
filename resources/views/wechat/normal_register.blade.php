@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html>
-	<head lang="en">
-		<meta http-equiv=Content-Type content="text/html; charset=utf-8">
-		<meta http-equiv=X-UA-Compatible content=IE=EmulateIE7>
-		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-		<meta name="format-detection" content="telephone=no">
-		<title>注册会员</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" href="css/font-awesome.min.css" />
-		<link rel="stylesheet" href="css/custom.css" />
-	</head>
+@extends('wechat_master')
+
+@section('title', '注册会员')
+
+@section('content')
 	<body>
 		<div class="container-fluid header-container">
 			<header class="bg-primary">
@@ -31,14 +24,14 @@
 			</div>
 			<button type="submit" class="btn btn-primary text-center center-block" style="font-size: 1em">注册</button>
 		</form>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-	   
+@endsection
+
+@section('js')
+	@parent
 		<script type="text/javascript">
 		$(function(){
 			
 		});
 		
 		</script>
-	</body>
-</html>
+@endsection

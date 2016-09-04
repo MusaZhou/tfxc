@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html>
-	<head lang="en">
-		<meta http-equiv=Content-Type content="text/html; charset=utf-8">
-		<meta http-equiv=X-UA-Compatible content=IE=EmulateIE7>
-		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-		<meta name="format-detection" content="telephone=no">
-		<title>注册正式会员</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" href="css/font-awesome.min.css" />
-		<link rel="stylesheet" href="css/custom.css" />
-	</head>
-	<body>
+@extends('wechat_master')
+
+@section('title', '注册正式会员')
+
+@section('content')
 		<div class="container-fluid header-container">
 			<header class="bg-primary">
 				<div class="row">
@@ -21,8 +13,8 @@
 			</header>
 		</div>
 		<form style="padding: 5px; font-size: 1.5em" class="border-form">
-			<label id="userName">姓名: ***</label><br/>
-			<label id="phone">电话: ***</label>
+			<label>姓名: <span id="userName"> </span></label><br/>
+			<label>电话: <span id="phone"> </span></label>
 			<div class="form-group">
 				<label>职位</label>
 				<input type="text" class="form-control" id="job" name="job" placeholder="职位">
@@ -39,17 +31,17 @@
 				<label>邮箱</label>
 				<input type="text" class="form-control" id="email" name="email" placeholder="邮箱">
 			</div>
-			<label class="text-danger">一年会费为500元</label>
+			<label class="text-danger">一年会费为{{ $vipAmount }}元</label>
 			<button type="submit" class="btn btn-primary text-center center-block" style="font-size: 1em">支付注册</button>
 		</form>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-	   
+@endsection
+
+@section('js')
+	@parent
 		<script type="text/javascript">
 		$(function(){
 			
 		});
 		
 		</script>
-	</body>
-</html>
+@endsection
