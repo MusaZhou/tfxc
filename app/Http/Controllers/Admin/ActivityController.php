@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Activity;
 use App\User;
 use App\PaymentType;
+use App\Province;
 
 class ActivityController extends Controller
 {
@@ -20,6 +21,12 @@ class ActivityController extends Controller
 		return view('admin.activity_management', ['activityList' => $activityList, 'userList' => $userList, 'paymentTypeList' => $paymentTypeList]);
 	}
 	
+	public function showAddActivity(Request $request){
+		$provinceList = Province::all();
+		
+		return view('admin.add_activity', ['provinceList' => $provinceList]);
+	}
+	
 	public function addActivity(Request $request){
 		$name = $request->name;
 		$description = $request->description;
@@ -29,6 +36,8 @@ class ActivityController extends Controller
 		$startTime = $request->startTime;
 		$endDate = $request->endDate;
 		$endTime = $request->endTime;
+		$cityId = $request->city;
+		$content = $request->content;
 		
 		$activity = new Activity();
 		$activity->name = $name;
@@ -37,6 +46,9 @@ class ActivityController extends Controller
 		$activity->address = $address;
 		$activity->start_time = $startDate.' '.$startTime;
 		$activity->end_time = $endDate.' '.$endTime;
+		$activity->city_id = $cityId;
+		$activity->content = $content;
+		
 		$activity->save();
 		
 		return redirect('/admin/activity_management');
@@ -54,6 +66,13 @@ class ActivityController extends Controller
 		return $result->toJson();
 	}
 	
+	public function showEditActivity(Request $request, $activityId){
+		$provinceList = Province::all();
+		$activity = Activity::find($activityId);
+		
+		return view('admin.edit_activity', ['provinceList' => $provinceList, 'activity' => $activity]);
+	}
+	
 	public function editActivity(Request $request){
 		$activityId = $request->activityId;
 		$name = $request->name;
@@ -64,6 +83,8 @@ class ActivityController extends Controller
 		$startTime = $request->startTime;
 		$endDate = $request->endDate;
 		$endTime = $request->endTime;
+		$cityId = $request->city;
+		$content = $request->content;
 		
 		$activity = Activity::find($activityId);
 		$activity->name = $name;
@@ -72,6 +93,8 @@ class ActivityController extends Controller
 		$activity->address = $address;
 		$activity->start_time = $startDate.' '.$startTime;
 		$activity->end_time = $endDate.' '.$endTime;
+		$activity->city_id = $cityId;
+		$activity->content = $content;
 		$activity->save();
 		
 		return redirect('/admin/activity_management');

@@ -11,4 +11,20 @@
 |
 */
 
-Route::get('/normal_register', 'UserController@showNormalRegister');
+//----------------------  UserController ---------------------------------
+
+Route::get('/show_normal_register', 'UserController@showNormalRegister');
+
+Route::get('/show_normal_register', 'UserController@showVipRegister');
+
+Route::get('/personal_info', 'UserController@personalInfo');
+
+Route::get('/personal_activity_history', 'UserController@activityHistory');
+
+//---------------------- ActivityController -------------------------------
+
+Route::get('/activity_list', 'ActivityController@activityList');
+
+Route::get('/activity_detail/{activityId}', 'ActivityController@activityDetail');
+
+Route::get('/show_subscribe_activity/{activityId}', 'ActivityController@showSubscribeActivity');

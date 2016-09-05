@@ -22,4 +22,8 @@ class Activity extends Model
 		
 		$this->delete();
 	}
+	
+	public function city(){
+		return $this->belongsTo('App\City');
+	}
 }

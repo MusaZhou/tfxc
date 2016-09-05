@@ -32,7 +32,7 @@
 				<input type="text" class="form-control" id="email" name="email" placeholder="邮箱">
 			</div>
 			<label class="text-danger">一年会费为{{ $vipAmount }}元</label>
-			<button type="submit" class="btn btn-primary text-center center-block" style="font-size: 1em">支付注册</button>
+			<button type="submit" class="btn btn-primary text-center center-block" style="font-size: 1em" onclick="register()">支付注册</button>
 		</form>
 @endsection
 

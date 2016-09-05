@@ -19,7 +19,8 @@ class ActivitiesTableSeeder extends Seeder
 						'price' => 12.00,
 						'start_time' => '2016-08-28 12:00:00',
 						'end_time' => '2016-08-30 12:00:00',
-						'address' => 'fsadfjsdak' 
+						'address' => 'fsadfjsdak',
+        				'city_id' => '33',
 				],
 				[ 
 						'id' => 2,
@@ -28,7 +29,8 @@ class ActivitiesTableSeeder extends Seeder
 						'price' => 20.00,
 						'start_time' => '2016-08-28 12:00:00',
 						'end_time' => '2016-08-30 12:00:00',
-						'address' => 'fsadfjsdak' 
+						'address' => 'fsadfjsdak',
+        				'city_id' => '33',
 				],
 				[ 
 						'id' => 3,
@@ -37,7 +39,8 @@ class ActivitiesTableSeeder extends Seeder
 						'price' => 12.00,
 						'start_time' => '2016-08-28 12:00:00',
 						'end_time' => '2016-08-30 12:00:00',
-						'address' => 'fsadfjsdak' 
+						'address' => 'fsadfjsdak',
+        				'city_id' => '33',
 				],
 				[ 
 						'id' => 4,
@@ -46,7 +49,8 @@ class ActivitiesTableSeeder extends Seeder
 						'price' => 12.00,
 						'start_time' => '2016-08-28 12:00:00',
 						'end_time' => '2016-08-30 12:00:00',
-						'address' => 'fsadfjsdak' 
+						'address' => 'fsadfjsdak',
+        				'city_id' => '33',
 				],
 				[ 
 						'id' => 5,
@@ -55,7 +59,8 @@ class ActivitiesTableSeeder extends Seeder
 						'price' => 12.00,
 						'start_time' => '2016-08-28 12:00:00',
 						'end_time' => '2016-08-30 12:00:00',
-						'address' => 'fsadfjsdak' 
+						'address' => 'fsadfjsdak',
+        				'city_id' => '33',
 				],
         ]);
     }

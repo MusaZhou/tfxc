@@ -29,9 +29,13 @@ Route::post('/edit_user', 'UserController@editUser');
 
 Route::get('/activity_management', 'ActivityController@index');
 
+Route::get('/show_add_activity', 'ActivityController@showAddActivity');
+
 Route::post('/add_activity', 'ActivityController@addActivity');
 
 Route::get('/get_activity_info_by_id', 'ActivityController@getActivityInfoById');
+
+Route::get('/show_edit_activity/{activityId}', 'ActivityController@showEditActivity');
 
 Route::post('/edit_activity', 'ActivityController@editActivity');
 
@@ -60,3 +64,7 @@ Route::post('/add_vip_period', 'VipPeriodController@addVipPeriod');
 Route::post('/edit_vip_period', 'VipPeriodController@editVipPeriod');
 
 Route::post('/delete_vip_period', 'VipPeriodController@deleteVipPeriod');
+
+//------------------------------------ GeneralController ----------------------------------------------
+
+Route::get('/get_cities_by_province', 'GeneralController@getCitiesByProvinceId');

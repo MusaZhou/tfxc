@@ -83,6 +83,10 @@ class Initialize extends Migration
         	$table->string('address')->nullable();
         	$table->dateTime('created_at')->nullable();
         	$table->dateTime('updated_at')->nullable();
+        	$table->integer('city_id')->unsigned()->nullable();
+        	$table->text('content')->nullable();
+        	
+        	$table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
         	
         	$table->softDeletes();
         });

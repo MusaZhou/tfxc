@@ -22,7 +22,7 @@
 				<label for="userName">电话</label>
 				<input type="text" class="form-control" id="phone" name="phone" placeholder="电话">
 			</div>
-			<button type="submit" class="btn btn-primary text-center center-block" style="font-size: 1em">注册</button>
+			<button type="submit" class="btn btn-primary text-center center-block" style="font-size: 1em" onclick="register()">注册</button>
 		</form>
 @endsection
 
