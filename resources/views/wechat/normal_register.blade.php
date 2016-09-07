@@ -22,6 +22,10 @@
 				<label for="userName">电话</label>
 				<input type="text" class="form-control" id="phone" name="phone" placeholder="电话">
 			</div>
+			<div class="form-group">
+				<label>邮箱</label>
+				<input type="text" class="form-control" id="email" name="email" placeholder="邮箱">
+			</div>
 			<button type="submit" class="btn btn-primary text-center center-block" style="font-size: 1em" onclick="register()">注册</button>
 		</form>
 @endsection

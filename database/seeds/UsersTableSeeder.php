@@ -21,9 +21,10 @@ class UsersTableSeeder extends Seeder
 						'location' => 'fdsfj',
 						'email' => 'afjdsaf@gajg.com',
 						'wechat_name' => 'fdsjafkdsa',
-						'wechat_icon' => '/wechat_icons/icon.png',
+						'head_image_url' => '/wechat_icons/icon.png',
 						'open_id' => 'ffjdskafj',
-						'gender' => 1 
+						'gender' => 1,
+						'password' => bcrypt('111111'),
 				],
 				[ 
 						'id' => 2,
@@ -34,9 +35,10 @@ class UsersTableSeeder extends Seeder
 						'location' => 'fdsfj',
 						'email' => 'afjdsaf@gajg.com',
 						'wechat_name' => 'fdsjafkdsa',
-						'wechat_icon' => '/wechat_icons/icon.png',
+						'head_image_url' => '/wechat_icons/icon.png',
 						'open_id' => 'ffjdskafj',
-						'gender' => 1 
+						'gender' => 1,
+						'password' => bcrypt('111111'),
 				],
 				[ 
 						'id' => 3,
@@ -47,9 +49,10 @@ class UsersTableSeeder extends Seeder
 						'location' => 'fdsfj',
 						'email' => 'afjdsaf@gajg.com',
 						'wechat_name' => 'fdsjafkdsa',
-						'wechat_icon' => '/wechat_icons/icon.png',
+						'head_image_url' => '/wechat_icons/icon.png',
 						'open_id' => 'ffjdskafj',
-						'gender' => 1 
+						'gender' => 1,
+						'password' => bcrypt('111111'), 
 				],
 				[ 
 						'id' => 4,
@@ -60,9 +63,10 @@ class UsersTableSeeder extends Seeder
 						'location' => 'fdsfj',
 						'email' => 'afjdsaf@gajg.com',
 						'wechat_name' => 'fdsjafkdsa',
-						'wechat_icon' => '/wechat_icons/icon.png',
+						'head_image_url' => '/wechat_icons/icon.png',
 						'open_id' => 'ffjdskafj',
-						'gender' => 1 
+						'gender' => 1,
+						'password' => bcrypt('111111'), 
 				],
 				[ 
 						'id' => 5,
@@ -73,9 +77,10 @@ class UsersTableSeeder extends Seeder
 						'location' => 'fdsfj',
 						'email' => 'afjdsaf@gajg.com',
 						'wechat_name' => 'fdsjafkdsa',
-						'wechat_icon' => '/wechat_icons/icon.png',
+						'head_image_url' => '/wechat_icons/icon.png',
 						'open_id' => 'ffjdskafj',
-						'gender' => 1 
+						'gender' => 1,
+						'password' => bcrypt('111111'), 
 				],
         ]);
     }

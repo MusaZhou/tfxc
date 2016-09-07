@@ -10,6 +10,7 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+// ----------------------------------- Login Controller ----------------------------------------
 
 Route::get('/', 'LoginController@index');
 

@@ -26,6 +26,8 @@ class Initialize extends Migration
         	$table->string('open_id')->nullable();
         	$table->integer('gender')->unsigned()->nullable();
         	$table->string('note')->nullable();
+        	$table->string('head_image_url')->nullable();
+        	$table->string('password')->nullable();
         	$table->dateTime('created_at')->nullable();
         	$table->dateTime('updated_at')->nullable();
         	

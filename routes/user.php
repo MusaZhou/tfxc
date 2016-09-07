@@ -10,7 +10,12 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+//------------------------------------ LoginController ---------------------------------------------
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'LoginController@index');
+
+Route::post('/login', 'LoginController@login');
+
+//------------------------------------ UserController -----------------------------------------------
+
+Route::get('/personal_center', 'UserController@personalCenter');

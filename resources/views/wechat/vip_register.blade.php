@@ -27,10 +27,6 @@
 				<label>驻地</label>
 				<input type="text" class="form-control" id="location" name="location" placeholder="驻地">
 			</div>
-			<div class="form-group">
-				<label>邮箱</label>
-				<input type="text" class="form-control" id="email" name="email" placeholder="邮箱">
-			</div>
 			<label class="text-danger">一年会费为{{ $vipAmount }}元</label>
 			<button type="submit" class="btn btn-primary text-center center-block" style="font-size: 1em" onclick="register()">支付注册</button>
 		</form>
