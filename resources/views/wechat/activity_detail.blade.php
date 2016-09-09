@@ -32,12 +32,15 @@
 		</div>
 @endsection
 
-@section('css')
+@section('js')
 	@parent
 		<script type="text/javascript">
 		$(function(){
 			
 		});
-		
+
+		function goToActivityList(){
+			location.href="/wechat/activity_list";
+		}
 		</script>
 @endsection

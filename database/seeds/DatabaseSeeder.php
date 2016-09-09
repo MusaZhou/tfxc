@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
 		$this->call ( VipPeriodsTableSeeder::class );
 		$this->call ( ActivitiesTableSeeder::class );
 		$this->call ( ActivityOrdersTableSeeder::class );
+		$this->call (ConstantsTableSeeder::class);
     }
 }

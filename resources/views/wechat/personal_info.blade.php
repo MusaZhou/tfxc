@@ -12,7 +12,12 @@
 				</div>
 			</header>
 		</div>
-		<div class="container-fluid content border-form" style="margin-top: 50px">
+		<div class="container-fluid content border-form" style="margin-top: 50px; font-size: 1em">
+			<div class="row">
+				<div class="col-xs-6 col-xs-offset-3">
+					<img src="/image_download/{{ $user->head_image_url }}" class="img-circle" style="width:100%; height:100%">
+				</div> 
+			</div>
 			<div class="row">
 				<div class="col-xs-5 text-left item-label">姓名</div>
 				<div class="col-xs-7 item-content" id="userName">{{ $user->name }}</div>
@@ -40,7 +45,9 @@
 			<div class="row">
 				<div class="col-xs-5 text-left item-label">会员有效期</div>
 				<?php $vipPeriod = $user->currentVipPeriod();?>
+				@if(!empty($vipPeriod))
 				<div class="col-xs-7 item-content" id="vipPeriod">{{ $vipPeriod->start_date.'~'.$vipPeriod->end_date }}</div>
+				@endif
 			</div>
 			<div class="row">
 				<button type="button" class="btn btn-primary text-center center-block" style="font-size: 1.3em; margin-top: 10px;" onclick="register()">注册正式会员</button>

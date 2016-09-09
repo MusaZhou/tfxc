@@ -121,6 +121,13 @@ class Initialize extends Migration
         	
         	$table->softDeletes();
         });
+        
+        Schema::create('constants', function(Blueprint $table){
+        	$table->increments('id');
+        	$table->integer('vip_price')->unsigned()->nullable();
+        	
+        	$table->softDeletes();
+        });
     }
 
     /**
@@ -137,5 +144,6 @@ class Initialize extends Migration
         Schema::drop('vip_orders');
         Schema::drop('payment_types');
         Schema::drop('users');
+        Schema::drop('constants');
     }
 }

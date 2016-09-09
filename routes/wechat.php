@@ -15,7 +15,11 @@
 
 Route::get('/show_normal_register', 'UserController@showNormalRegister');
 
-Route::get('/show_normal_register', 'UserController@showVipRegister');
+Route::post('/register_normal_user', 'UserController@registerNormalUser');
+
+Route::get('/show_vip_register', 'UserController@showVipRegister');
+
+Route::post('/register_vip_user', 'UserController@registerVipUser');
 
 Route::get('/personal_info', 'UserController@personalInfo');
 

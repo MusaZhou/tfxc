@@ -24,8 +24,8 @@
 			<tbody>
 				@foreach($activityList as $activity)
 				<tr>
-					<td style="text-align: left">$activity->name</td>
-					<td style="text-align: center">$activity->city->name</td>
+					<td style="text-align: left">{{ $activity->name }}</td>
+					<td style="text-align: center">{{ $activity->city->name }}</td>
 					<?php 
 						$startDate = new DateTime($activity->start_time);
 					?>
@@ -45,6 +45,9 @@
 		$(function(){
 			
 		});
-		
+
+		function viewActivityDetail(activityId){
+			location.href="/wechat/activity_detail/" + activityId;
+		}
 		</script>
 @endsection

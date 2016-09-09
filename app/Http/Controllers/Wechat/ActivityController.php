@@ -13,7 +13,7 @@ class ActivityController extends Controller
     public function activityList(Request $request){
 		$activityList = Activity::whereRaw('end_time > now()')->get();
 		
-		return view('wecaht.activity_list');
+		return view('wechat.activity_list', ['activityList' => $activityList]);
 	}
 	
 	public function activityDetail(Request $request, $activityId){

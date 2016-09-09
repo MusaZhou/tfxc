@@ -38,8 +38,39 @@ class User extends Model
 	}
 	
 	public function isVip(){
-		$vipPeriod = $this->vipPeriods()->whereRaw('start_date <= now() AND end_date >= now()')->get();
+		$vipPeriods = $this->vipPeriods()->whereRaw('start_date <= now() AND end_date >= now()')->get();
 		
-		return !$vipPeriod->isEmpty();
+		return !$vipPeriods->isEmpty();
+	}
+	
+	public function systemCreatedOrder(){
+		$vipOrders = VipOrder::where('user_id', $this->id)
+							->where('status', 3)
+							->orderBy('id', 'desc')
+							->get();
+		
+		if($vipOrders->count() > 0){
+			return $vipOrders->last();
+		}else{
+			return null;
+		}
+	}
+	
+	public function currentVipPeriod(){
+		$vipPeriods = $this->vipPeriods()->whereRaw('start_date <= now() AND end_date >= now()')->get();
+		
+		if(!$vipPeriods->isEmpty()){
+			return $vipPeriods->last();
+		}else{
+			return null;
+		}
+	}
+	
+	public function getActivityOrder($activityId){
+		$activityOrder = ActivityOrder::where('user_id', $this->id)
+										->where('activity_id', $activityId)
+										->get()->last();
+		
+		return $activityOrder;
 	}
 }
