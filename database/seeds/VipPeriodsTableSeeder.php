@@ -14,16 +14,16 @@ class VipPeriodsTableSeeder extends Seeder
         DB::table('vip_periods')->insert([
         		[ 
 						'id' => 1,
-						'start_date' => '2015-08-01',
-						'end_date' => '2016-08-01',
+						'start_date' => '2016-08-01',
+						'end_date' => '2017-08-01',
 						'vip_order_id' => 1,
 						'user_id' => 1,
         				'note' => 'abc',
 				],
 				[ 
 						'id' => 2,
-						'start_date' => '2016-08-01',
-						'end_date' => '2017-08-01',
+						'start_date' => '2015-08-01',
+						'end_date' => '2016-08-01',
 						'vip_order_id' => 2,
 						'user_id' => 1,
         				'note' => 'abc',

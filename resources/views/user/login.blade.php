@@ -36,8 +36,8 @@
 
     <div class="container">
     	<div class="row">
-    		<div class="col-lg-3 col-lg-offset-5" style="margin-top: 150px">
-    			<h1>天方信诚</h1>
+    		<div class="col-lg-4 col-lg-offset-4" style="margin-top: 150px">
+    			<h1>天方信诚-会员平台</h1>
     		</div>
     	</div>
         <div class="row" style="margin-top: 10px;">
