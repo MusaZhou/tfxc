@@ -70,34 +70,33 @@
 				<div class="alert alert-danger" role="alert" id="errorEditProfile"></div>
 				<form id="editProfileForm" name="editProfileForm" role="form" action="/user/update_profile" method="post">
 					{{ csrf_field() }}
-					<input id="userId" name="userId" type="hidden"/>
 					<div class="form-group">
 						<label>姓名 *</label>
-						<input id="name" name="url" class="form-control" value="{{ $user->name }}"/>
+						<input id="profileName" name="name" class="form-control" value="{{ $user->name }}"/>
 					</div>
 					<div class="form-group">
 						<label>电话 *</label>
-						<input id="phone" name="phone" class="form-control" value="{{ $user->phone }}"/>
+						<input id="profilePhone" name="phone" class="form-control" value="{{ $user->phone }}"/>
 					</div>
 					<div class="form-group">
 						<label>邮箱 *</label>
-						<input id="email" name="email" class="form-control" value="{{ $user->email }}"/>
+						<input id="profileEmail" name="email" class="form-control" value="{{ $user->email }}"/>
 					</div>
 					<div class="form-group">
-						<label>职位 *</label>
-						<input id="job" name="job" class="form-control" value="{{ $user->job }}"/>
+						<label>职位</label>
+						<input id="profileJob" name="job" class="form-control" value="{{ $user->job }}"/>
 					</div>
 					<div class="form-group">
-						<label>单位 *</label>
-						<input id="organization" name="organization" class="form-control" value="{{ $user->organization }}"/>
+						<label>单位</label>
+						<input id="profileOrganization" name="organization" class="form-control" value="{{ $user->organization }}"/>
 					</div>
 					<div class="form-group">
-						<label>驻地 *</label>
-						<input id="location" name="location" class="form-control" value="{{ $user->location }}"/>
+						<label>驻地</label>
+						<input id="profileLocation" name="location" class="form-control" value="{{ $user->location }}"/>
 					</div>
 					<div class="form-group">
-						<label>性别 *</label>
-						<select id="gender" name="gender" class="form-control">
+						<label>性别</label>
+						<select id="profileGender" name="gender" class="form-control">
 							<option value="1">男</option>
 							<option value="2">女</option>
 						</select>
@@ -106,7 +105,7 @@
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-				<button type="button" class="btn btn-primary" id="editProfileSubmit">确定</button>
+				<button type="button" class="btn btn-primary" id="editProfileSubmit" onclick="updateProfile()">确定</button>
 			  </div>
 			</div>
 		  </div>
@@ -126,10 +125,6 @@
 					{{ csrf_field() }}
 					<input id="userId" name="userId" type="hidden"/>
 					<div class="form-group">
-						<label>电话 *</label>
-						<input id="phone" name="phone" class="form-control"/>
-					</div>
-					<div class="form-group">
 						<label>旧密码 *</label>
 						<input type="password" id="oldPassword" name="oldPassword" class="form-control"/>
 					</div>
@@ -137,11 +132,15 @@
 						<label>新密码 *</label>
 						<input type="password" id="newPassword" name="newPassword" class="form-control"/>
 					</div>
+					<div class="form-group">
+						<label>再次输入新密码 *</label>
+						<input type="password" id="confirmNewPassword" name="confirmNewPassword" class="form-control"/>
+					</div>
 				</form>
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-				<button type="button" class="btn btn-primary" id="changePasswordSubmit">确定</button>
+				<button type="button" class="btn btn-primary" id="changePasswordSubmit" onclick="updatePassword()">确定</button>
 			  </div>
 			</div>
 		  </div>
@@ -153,7 +152,7 @@
 			<div class="modal-content">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="applyVipUser">申请正式会员</h4>
+				<h4 class="modal-title">申请正式会员</h4>
 			  </div>
 			  <div class="modal-body">
 				<div class="alert alert-danger" role="alert" id="errorApplyVipUser"></div>
@@ -200,12 +199,12 @@
 			<div class="modal-content">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="applyVipUser">宁夏中阿金融论坛</h4>
+				<h4 class="modal-title" id="activityDetailTitle">宁夏中阿金融论坛</h4>
 			  </div>
 			  <div class="modal-body">
 				<div class="alert alert-danger" role="alert" id="errorActivityDetail"></div>
 				<div>
-					<div id="activityContent" class="center-block" style="height:500px; overflow-y: auto; word-wrap: break-word;">
+					<div id="activityDetailContent" class="center-block" style="height:500px; overflow-y: auto; word-wrap: break-word;">
 						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
 						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
 						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
@@ -310,13 +309,13 @@
 									<?php
 											$startDate = (new DateTime($activity->start_time))->format('Y-m-d');
 											$city = $activity->city;
-											$province = $city->province;
+											//$province = $city->province;
 									?>
 									<tr>
 										<td>{{ $activity->name }}</td>
 										
 										<td>{{ $startDate }}</td>
-										<td>{{ $province->name.'.'.$city->name }}</td>
+										<td>{{ $city->name }}</td>
 										<td><a class="btn btn-primary" data-toggle="modal" data-target="#activityDetailModal" onclick="viewActivityDetail({{ $activity->id }}, false)">详情</a></td> 
 									</tr>
 									@endforeach
@@ -341,7 +340,7 @@
 							</div>
 							<div class="row">
 								<div class="col-lg-12 col-md-12 text-left">
-									<h3>{{ $user->email }}</h3>
+									<h4>{{ $user->email }}</h4>
 								</div>
 							</div>
 							<div class="row">
@@ -390,10 +389,18 @@
 						</div>
 						<div class="col-lg-5 col-md-5" style="margin-top: 10px">
 							<div class="row" style="margin-top: 5px">
-								<img src="/image_download/{{ $user->head_image_url }}" class="img-rounded img-responsive center-block" style="width: 100%; height: auto;">
+								<img src="/image_download/{{ $user->head_image_url }}" class="img-rounded img-responsive center-block" style="width: 100%; height: auto;" id="headImage">
+							</div>
+							<div class="row" id="headImageProgressRow">
+								<div class="progress">
+								  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+								    <span class="sr-only">100% Complete</span>
+								  </div>
+								</div>
 							</div>
 							<div class="row" style="margin-top: 5px">
-								<button type="button" class="btn btn-primary btn-block">编辑头像</button>
+								<button type="button" class="btn btn-primary btn-block" onclick="openImageBrowser()">编辑头像</button>
+								<input type="file" name="headImageFile" id="headImageFile" style="display:none">
 							</div>
 							<div class="row" style="margin-top: 5px">
 								<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editProfileModal">编辑个人信息</button>
@@ -433,19 +440,19 @@
 									<tbody>
 										@foreach($myActivityList as $myActivity)
 										<?php 
-											$startDate = (new DateTime($myActivity->start_time))->format('Y-m-d');
+											//$startDate = (new DateTime($myActivity->start_time))->format('Y-m-d');
 											$activityOrder = $user->getActivityOrder($myActivity->id);
 											$paymentDate = (new DateTime($activityOrder->payment_time))->format('Y-m-d');
 											$city = $myActivity->city;
-											$province = $city->province;
+											//$province = $city->province;
 											$startTime = $myActivity->start_time;
 											$endTime = $myActivity->end_time;
 											$now = date('Y-m-d H:i:s');
 										?>
 										<tr>
 											<td>{{ $myActivity->name }}</td>
-											<td>{{ $startDate }}</td>
-											<td>{{ $province->name.'.'.$city->name }}</td>
+											<td>{{ $myActivity->start_time }}</td>
+											<td>{{ $city->name }}</td>
 											<td>{{ $activityOrder->price }}元</td>
 											<td>{{ $paymentDate }}</td>
 											<td><a class="btn btn-primary" data-toggle="modal" data-target="#activityDetailModal" onclick="viewActivityDetail({{ $myActivity->id }}, true)">详情</a></td> 
@@ -485,6 +492,8 @@
 		
 		<script>
 			var gender = {{ $user->gender }};
+			var oldPasswordCheck = false;
+			
 			$(function(){
 				$('.ad_list').DataTable({
 						"autoWidth": false,
@@ -525,8 +534,8 @@
 				});
 				
 				var columnDefs = [
-								   { "width": "40%", "targets": 0},
-								   { "width": "10%", "targets": 1},
+								   { "width": "30%", "targets": 0},
+								   { "width": "20%", "targets": 1},
 								   { "width": "10%", "targets": 2},
 								   { "width": "10%", "targets": 3},
 								   { "width": "10%", "targets": 4},
@@ -540,10 +549,114 @@
 				$('#errorChangePassword').hide();
 				$('#errorApplyVipUser').hide();
 				$('#errorActivityDetail').hide();
+				$('#headImageProgressRow').hide();
 
-				$('#gender').val(gender);
-				$('#gender').change();
+				$('#profileGender').val(gender);
+				$('#profileGender').change();
+
+				$('#oldPassword').blur(function(){
+					var oldPassword = $('#oldPassword').val().trim();
+					if(oldPassword == ''){
+						return;
+					}
+
+					$.ajax({
+							url: '/user/check_password',
+							method: 'POST',
+							data: {
+									password: oldPassword,
+									_token: '{{ csrf_token() }}', 
+									}
+					}).done(function(response){
+						if(response.status == 1){
+							oldPasswordCheck = true;
+							$('#errorChangePassword').hide();
+						}else{
+							oldPasswordCheck = false;
+							$('#errorChangePassword').text('旧密码不正确');
+							$('#errorChangePassword').show();
+						}
+					});
+				});
+
+				$('#headImageFile').change(function(){
+					var imageElement = $('#headImage');
+					var progressBarElement = $('#headImageProgressRow');
+					var files = this.files;
+					var fileSize = 5 * 1024 * 1024; // 5MB
+
+					var result = previewAndUploadImage(files, fileSize, imageElement, progressBarElement, 'headImage', '{{ csrf_token() }}', '/user/upload_head_image');
+					if(result != null && result !== undefined){
+						result.done(function(response){
+							if(response != 1){
+								bootbox.alert('图片上传失败');
+							}else{
+								progressBarElement.hide();
+							}
+						}).fail(function(response){
+							bootbox.alert('图片上传失败');
+						});
+					}
+				});
 			});
+
+			function updateProfile(){
+				if(validateProfile()){
+					$('#errorEditProfile').hide();
+					$('#editProfileForm').submit();
+				}else{
+					$('#errorEditProfile').show();
+				}
+			}
+
+			function validateProfile(){
+				var name = $('#profileName').val().trim();
+				var phone = $('#profilePhone').val().trim();
+				var email = $('#profileEmail').val().trim();
+
+				if(name == '' || phone == '' || email == ''){
+					$('#errorEditProfile').text('请完成必填项');
+					return false;
+				}
+
+				return true;
+			}
+
+			function updatePassword(){
+				if(validatePassword()){
+					$('#errorChangePassword').hide();
+					$('#changePasswordForm').submit();
+				}else{
+					$('#errorChangePassword').show();
+				}
+			}
+
+			function validatePassword(){
+				var oldPassword = $('#oldPassword').val().trim();
+				var newPassword = $('#newPassword').val().trim();
+				var confirmNewPassword = $('#confirmNewPassword').val().trim();
+
+				if(oldPassword == '' || newPassword == '' || confirmNewPassword == ''){
+					$('#errorChangePassword').text('请完成必填项');
+					return false;
+				}
+
+				if(!oldPasswordCheck){
+					$('#errorChangePassword').text('旧密码不正确');
+					return false;
+				}
+
+				if(newPassword != confirmNewPassword){
+					$('#errorChangePassword').text('两次新密码输入不一致');
+					return false;
+				}
+
+				return true;
+			}
+
+			function openImageBrowser(){
+				$('#headImageFile').click();
+			}
 		</script>
 	</body>
 
