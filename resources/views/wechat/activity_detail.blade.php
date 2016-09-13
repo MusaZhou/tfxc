@@ -42,5 +42,9 @@
 		function goToActivityList(){
 			location.href="/wechat/activity_list";
 		}
+
+		function goToSubscribeActivity(activityId){
+			location.href="/wechat/subscribe_activity/" + activityId;
+		}
 		</script>
 @endsection

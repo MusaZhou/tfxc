@@ -43,14 +43,16 @@ class User extends Model
 		return !$vipPeriods->isEmpty();
 	}
 	
-	public function systemCreatedOrder(){
+	public function latestVipOrder(){
 		$vipOrders = VipOrder::where('user_id', $this->id)
-							->where('status', 3)
-							->orderBy('id', 'desc')
+							->where('status', 1)
+							->whereRaw('created_at > (now() - INTERVAL 2 HOUR)')
+							->orderBy('created_at', 'desc')
+							->limit(1)
 							->get();
 		
 		if($vipOrders->count() > 0){
-			return $vipOrders->last();
+			return $vipOrders->first();
 		}else{
 			return null;
 		}
@@ -72,5 +74,21 @@ class User extends Model
 										->get()->last();
 		
 		return $activityOrder;
+	}
+	
+	public function latestActivityOrder($activityId){
+		$activityOrders = ActivityOrder::where('user_id', $this->id)
+								->where('status', 1)
+								->where('activity_id', $activityId)
+								->whereRaw('created_at > (now() - INTERVAL 2 HOUR)')
+								->orderBy('created_at', 'desc')
+								->limit(1)
+								->get();
+	
+		if($activityOrders->count() > 0){
+			return $activityOrders->first();
+		}else{
+			return null;
+		}
 	}
 }

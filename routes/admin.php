@@ -26,6 +26,10 @@ Route::get('/get_user_info_by_id', 'UserController@getUserInfoById');
 
 Route::post('/edit_user', 'UserController@editUser');
 
+Route::post('/update_vip_standard_price', 'UserController@updateVipStandardPrice');
+
+Route::post('/update_user_vip_price', 'UserController@updateUserVipPrice');
+
 //------------------------------------ Activity Controller ---------------------------------------
 
 Route::get('/activity_management', 'ActivityController@index');

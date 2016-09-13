@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Constant;
+use App\VipOrder;
 
 class UserController extends Controller
 {
@@ -29,18 +30,9 @@ class UserController extends Controller
 	
 	public function showVipRegister(Request $request){
 		$user = User::find($request->session()->get('userId', 1));
+		$standardPrice = Constant::first()->vip_price;
 		
-		$vipPrice;
-		
-		$systemCreatedOrder = $user->systemCreatedOrder();
-		
-		if(!empty($systemCreatedOrder)){
-			$vipPrice = $systemCreatedOrder->price;
-		}else{
-			$vipPrice = Constant::first()->vip_price;
-		}
-		
-		return view('wechat.vip_register', ['user' => $user, 'vipPrice' => $vipPrice]);
+		return view('wechat.vip_register', ['user' => $user, 'standardPrice' => $standardPrice]);
 	}
 	
 	public function registerVipUser(Request $request){
@@ -49,8 +41,26 @@ class UserController extends Controller
 		$user->organization = $request->organization;
 		$user->location = $request->location;
 		$user->save();
+		
+		$vipOrder = $user->latestVipOrder();
+		
+		$price;
+		
+		if(!empty($vipOrder)){
+			$price = $vipOrder->price;
+		}else{
+			$price = Constant::first()->vip_price;
+				
+			$vipOrder = new VipOrder();
+			$vipOrder->user_id = $user->id;
+			$vipOrder->price = $price;
+			$vipOrder->status = 1;
+			$vipOrder->wx_outtrade_no = 'vip-user-'.$user->id.'-'.date('YmdHis');
+			$vipOrder->payment_type_id = 1;
+			$vipOrder->save();
+		}
 	
-		return view('wechat.vip_register_success');
+		return view('wechat.make_payment', ['amount' => $price, 'orderType' => 1, 'outTradeNo' => $vipOrder->wx_outtrade_no]);
 	}
 	
 	public function personalInfo(Request $request){

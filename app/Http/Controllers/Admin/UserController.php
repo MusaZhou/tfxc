@@ -8,6 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\PaymentType;
+use App\Constant;
+use DB;
+use App\VipOrder;
 
 class UserController extends Controller
 {
@@ -16,7 +19,13 @@ class UserController extends Controller
 		
 		$paymentTypeList = PaymentType::all();
 		
-		return view('admin.user_management', ['userList' => $userList, 'paymentTypeList' => $paymentTypeList]);
+		$vipStandardPrice = Constant::first()->vip_price;
+		
+		return view('admin.user_management', [
+												'userList' => $userList, 
+												'paymentTypeList' => $paymentTypeList,
+												'standardVipPrice' => $vipStandardPrice,
+		]);
 	}
 	
 	public function addUser(Request $request){
@@ -81,5 +90,28 @@ class UserController extends Controller
 		$user->save();
 		
 		return redirect('/admin/user_management');
+	}
+	
+	public function updateVipStandardPrice(Request $request){
+		$price = $request->price;
+		
+		DB::table('Constants')->update(['vip_price' => $price]);
+		
+		return ['status' => 1];
+	}
+	
+	public function updateUserVipPrice(Request $request){
+		$userId = $request->userId;
+		$price = $request->price;
+		
+		$vipOrder = new VipOrder();
+		$vipOrder->user_id = $userId;
+		$vipOrder->price = $price;
+		$vipOrder->payment_type_id = 1;
+		$vipOrder->status = 1;
+		$vipOrder->wx_outtrade_no = 'vip-user-'.$userId.'-'.date('YmdHis');
+		$vipOrder->save();
+		
+		return ['status' => 1];
 	}
 }

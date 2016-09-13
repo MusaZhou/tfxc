@@ -249,6 +249,11 @@
                 <h1 class="page-header">用户</h1>
             </div>
      </div>
+     		<div class="row" style="margin: 5px;">
+     			<div class="col-lg-1 col-lg-offset-9 text-left"><label>VIP注册标准费用</label></div>
+     			<div class="col-lg-1 text-center">{{ $standardVipPrice }}元</div>
+     			<div class="col-lg-1"><button type="button" class="btn btn-default" onclick="editVipStandardPrice()"> 编辑</button></div>
+     		</div>
             <div class="row" style="margin: 5px;">
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">
@@ -262,6 +267,9 @@
                     </button>
                     <button type="button" class="btn btn-primary" onclick="showAddVipPeriod()">
                     	添加正式会员注册记录
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="editUserVipPrice()">
+                    	修改用户vip注册费用
                     </button>
                 </div>
             </div>
@@ -670,6 +678,66 @@
 					}).done(function(response){
 						if(response.status == 1){
 							location.reload();
+						}
+					});
+				}
+			});
+		}
+	}
+
+	function editVipStandardPrice(){
+		bootbox.prompt("VIP注册标准费用", function(result) {
+			if(result == null){
+				return;
+			}else if(!$.isNumeric(result)){
+				bootbox.alert('费用只能是数字');
+			}else{
+				$.ajax({
+					url: '/admin/update_vip_standard_price',
+					method: 'POST',
+					data: { 
+							price: result,
+							_token: "{{ csrf_token() }}",
+							 },
+					dataType: 'JSON',
+				}).done(function(response){
+					if(response.status == 1){
+						location.reload();
+					}else{
+						bootbox.alert('更新失败');
+					}
+				});
+			}
+		});
+	}
+
+	function editUserVipPrice(){
+		var checkedUser = $('input[name="userRadio"]:checked');
+		if(checkedUser.length == 0){
+			bootbox.alert('请选择用户');
+		}else{
+			var userId = checkedUser.val();
+			
+			bootbox.prompt("VIP注册费用(2小时内有效)", function(result) {
+				if(result == null){
+					return;
+				}else if(!$.isNumeric(result)){
+					bootbox.alert('费用只能是数字');
+				}else{
+					$.ajax({
+						url: '/admin/update_user_vip_price',
+						method: 'POST',
+						data: { 
+								price: result,
+								userId: userId,
+								_token: "{{ csrf_token() }}",
+								 },
+						dataType: 'JSON',
+					}).done(function(response){
+						if(response.status == 1){
+							bootbox.alert('修改成功(2小时有效)');
+						}else{
+							bootbox.alert('更新失败');
 						}
 					});
 				}

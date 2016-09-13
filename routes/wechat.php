@@ -31,4 +31,4 @@ Route::get('/activity_list', 'ActivityController@activityList');
 
 Route::get('/activity_detail/{activityId}', 'ActivityController@activityDetail');
 
-Route::get('/show_subscribe_activity/{activityId}', 'ActivityController@showSubscribeActivity');
+Route::get('/subscribe_activity/{activityId}', 'ActivityController@subscribeActivity');

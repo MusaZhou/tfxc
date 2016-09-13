@@ -28,7 +28,7 @@
 				<label>驻地</label>
 				<input type="text" class="form-control" id="location" name="location" placeholder="驻地">
 			</div>
-			<label class="text-danger">一年会费为{{ $vipPrice }}元</label>
+			<label class="text-danger">标准一年期会费为{{ $standardPrice }}元</label>
 			<div class="alert alert-danger" role="alert" id="error"></div>
 			<button type="submit" class="btn btn-primary text-center center-block" style="font-size: 1em" onclick="register()">支付注册</button>
 		</form>
