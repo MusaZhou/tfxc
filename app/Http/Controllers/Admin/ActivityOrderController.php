@@ -112,4 +112,21 @@ class ActivityOrderController extends Controller
     	
     	return ['status' => 1];
     }
+    
+    public function changeUserActivityPrice(Request $request){
+    	$price = $request->price;
+    	$activityId = $request->activityId;
+    	$userId = $request->userId;
+    
+    	$activityOrder = new ActivityOrder();
+    	$activityOrder->user_id = $userId;
+    	$activityOrder->activity_id = $activityId;
+    	$activityOrder->price = $price;
+    	$activityOrder->payment_type_id = 1;
+    	$activityOrder->status = 1;
+    	$activityOrder->wx_outtrade_no = 'activity-'.$activityId.'-user-'.$userId.'-'.date('YmdHis');
+    	$activityOrder->save();
+    
+    	return ['status' => 1];
+    }
 }

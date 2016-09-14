@@ -10,6 +10,7 @@ use App\Activity;
 use App\User;
 use App\PaymentType;
 use App\Province;
+use App\ActivityOrder;
 
 class ActivityController extends Controller
 {

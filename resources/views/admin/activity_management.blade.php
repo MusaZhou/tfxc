@@ -193,6 +193,9 @@
 	      		<div class="col-lg-2">
 	      			<input type="text" class="form-control" id="userActivityPrice" name="userActivityPrice" placeholder="0.00">
 	      		</div>
+	      		<div class="col-lg-2">
+	      			<label>(2小时内有效)</label>
+	      		</div>
 	      	</div>
 	      </div>
 	      <div class="modal-footer">
@@ -620,6 +623,25 @@
 			bootbox.alert('价格必须是数字');
 		}else{
 			userId = checkedUser.val();
+
+			$.ajax({
+				url: '/admin/change_user_activity_price',
+				method: 'POST',
+				data: { 
+						price: changePrice,
+						userId: userId,
+						activityId: selectedActivityId,
+						_token: "{{ csrf_token() }}",
+						 },
+				dataType: 'JSON',
+			}).done(function(response){
+				if(response.status == 1){
+					bootbox.alert('修改成功，2小时内有效');
+					location.reload();
+				}else{
+					bootbox.alert('修改失败');
+				}
+			});
 		}
 	}
     </script>

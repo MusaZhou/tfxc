@@ -58,6 +58,8 @@ Route::post('/edit_activity_order', 'ActivityOrderController@editActivityOrder')
 
 Route::post('/delete_activity_order', 'ActivityOrderController@deleteActivityOrder');
 
+Route::post('/change_user_activity_price', 'ActivityOrderController@changeUserActivityPrice');
+
 //------------------------------------ VipPeriod Controller -----------------------------------------
 
 Route::get('/get_vip_period_table_data/{userId}', 'VipPeriodController@getVipPeriodTableData');
