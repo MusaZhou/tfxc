@@ -99,7 +99,7 @@ function startCountDownTimeSingle(deadline){
 	  },1000);
 }
 
-function initializeDataTable(tableElement, columnDefArray, itemPerPage, orderArray){
+function initializeDataTable(tableElement, columnDefArray, itemPerPage, orderArray, lengthChange = true){
 	
 	var dataTable = tableElement.DataTable({
     	"autoWidth": false,
@@ -107,6 +107,7 @@ function initializeDataTable(tableElement, columnDefArray, itemPerPage, orderArr
         responsive: true,
         "pageLength": itemPerPage,
         "order": orderArray,
+        "lengthChange": lengthChange,
         language:{
         	"decimal":        "",
             "emptyTable":     "目前没有数据",

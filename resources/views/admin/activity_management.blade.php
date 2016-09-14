@@ -130,6 +130,78 @@
 	    </div>
 	  </div>
 	</div>
+	
+	<!-- Edit User Activity Price Modal -->
+	<div class="modal fade" id="editUserActivityPriceModal" tabindex="-1" role="dialog" aria-labelledby="editUserActivityPriceLabel">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="editUserActivityPriceLabel">修改用户活动价格</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="alert alert-danger" role="alert" id="errorEditUserActivityPrice"></div>
+	      	<div class="row">
+	      		<div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            	用户列表
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <table class="table table-striped table-bordered table-hover" id="user_list">
+                                    <thead>
+                                        <tr>
+                                        	<th></th>
+                                            <th>ID</th>
+                                            <th>姓名</th>
+                                            <th>手机号码</th>
+                                            <th>单位</th>
+                                            <th>微信昵称</th>
+                                            <th>邮箱</th>
+                                            <th>会员</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    	@foreach ( $userList as $user)
+                                        <tr>
+                                        	<td><input type="radio" name="userRadio" value="{{$user->id}}"></td>
+                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->phone }}</td>
+                                            <td>{{ $user->organization }}</td>
+                                            <td>{{ $user->wechat_name }}</td>
+                                            <th>{{ $user->email }}</th>
+                                            <td>{{ $user->isVip() ? '是' : '否' }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+	      	</div>
+	      	<div class="row">
+	      		<div class="col-lg-2">
+	      			<label>标准价格:<span class="text-success" id="standardActivityPriceUser">100元</span></label>
+	      		</div>
+	      		<div class="col-lg-2">
+	      			<label>修改为:</label>
+	      		</div>
+	      		<div class="col-lg-2">
+	      			<input type="text" class="form-control" id="userActivityPrice" name="userActivityPrice" placeholder="0.00">
+	      		</div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	        <button type="button" class="btn btn-primary" id="editUserActivityPriceSubmit" onclick="editUserActivityPrice()">确定</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 	<!--      Main Content          -->
 	 <div class="row">
@@ -153,6 +225,9 @@
                     </button>
                     <button type="button" class="btn btn-primary" onclick="showAddActivityOrder()">
                     	添加活动报名
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="showChangeUserActivityPrice()">
+                    	修改用户活动价格
                     </button>
                 </div>
             </div>
@@ -187,7 +262,7 @@
                                             <td>{{ $activity->id }}</td>
                                             <td id="activityNameTD_{{ $activity->id }}">{{ $activity->name }}</td>
                                             <td>{{ $activity->description }}</td>
-                                            <td>{{ $activity->price }}</td>
+                                            <td id="activityPriceTD_{{ $activity->id }}">{{ $activity->price }}</td>
                                             <td>{{ $activity->start_time }}</td>
                                             <td>{{ $activity->end_time }}</td>
                                             <td>{{ $activity->address }}</td>
@@ -263,6 +338,7 @@
 	
     <script>
     var activityOrderTable;
+    var selectedActivityId;
     
     $(function() {
         // activity table defination
@@ -301,9 +377,23 @@
     	    	               ];
         
     	activityOrderTable = initializeAjaxDataTable($('#activity_order_list'), columnDefArray_activityOrder, 25, [[1, "desc"]]);
+
+		var columnDefArray_userList = [
+		                               {"width": "10%", "targets": 0},
+		                               {"width": "5%", "targets": 1},
+		                               {"width": "10%", "targets": 2},
+		                               {"width": "15%", "targets": 3},
+		                               {"width": "15%", "targets": 4},
+		                               {"width": "15%", "targets": 5},
+		                               {"width": "20%", "targets": 6},
+		                               {"width": "10%", "targets": 7},
+		                               ];
+        
+		initializeDataTable($('#user_list'), columnDefArray_userList, 5, [[1, "asc"]], false);
 		
 		$('#errorAddActivityOrder').hide();
 		$('#errorEditActivityOrder').hide();
+		$('#errorEditUserActivityPrice').hide();
 
 		$('.time').timepicker({
 			'timeFormat': 'H:i',
@@ -506,6 +596,31 @@
 
 	function showAddActivity(){
 		location.href="/admin/show_add_activity";
+	}
+
+	function showChangeUserActivityPrice(){
+		var checkedActivity = $('input[name="activityRadio"]:checked');
+		if(checkedActivity.length == 0){
+			bootbox.alert('请选择活动');
+		}else{
+			selectedActivityId = checkedActivity.val();
+			var activityStandardPrice = $('#activityPriceTD_' + selectedActivityId).text().trim();
+			$('#standardActivityPriceUser').text(activityStandardPrice + '元');
+			$('#editUserActivityPriceModal').modal();
+		}
+		
+	}
+
+	function editUserActivityPrice(){
+		var changePrice = $('#userActivityPrice').val().trim();
+		var checkedUser = $('input[name="userRadio"]:checked');
+		if(checkedUser.length == 0){
+			bootbox.alert('请选择用户');
+		}else if(changePrice == '' || !$.isNumeric(changePrice) || changePrice < 0.1){
+			bootbox.alert('价格必须是数字');
+		}else{
+			userId = checkedUser.val();
+		}
 	}
     </script>
 @endsection
