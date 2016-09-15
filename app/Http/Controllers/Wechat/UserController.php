@@ -30,9 +30,16 @@ class UserController extends Controller
 	
 	public function showVipRegister(Request $request){
 		$user = User::find($request->session()->get('userId', 1));
-		$standardPrice = Constant::first()->vip_price;
+		$vipOrder = $user->latestVipOrder();
+
+		$price;
+		if(!empty($vipOrder)){
+			$price = $vipOrder->price;
+		}else{
+			$price = Constant::first()->vip_price;
+		}
 		
-		return view('wechat.vip_register', ['user' => $user, 'standardPrice' => $standardPrice]);
+		return view('wechat.vip_register', ['user' => $user, 'price' => $price]);
 	}
 	
 	public function registerVipUser(Request $request){

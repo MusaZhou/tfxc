@@ -12,6 +12,6 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+        'wechat/entry', 'vip_order_notify', 'activity_order_notify'
     ];
 }
