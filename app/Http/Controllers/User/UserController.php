@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Wechat;
 use EasyWeChat\Payment\Order;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use QrCode;
 use App\Constant;
 use App\VipOrder;
 use Log;
@@ -24,7 +24,7 @@ class UserController extends Controller
     	
     	$activityList = Activity::whereRaw('end_time > now()')->get();
     	
-    	$activityOrderList = $user->activityOrders;
+    	$activityOrderList = $user->paidActivityOrders();
 		$myActivityList = collect();
 		
 		foreach($activityOrderList as $activityOrder){
@@ -123,6 +123,7 @@ class UserController extends Controller
 		if(!empty($vipOrder)){
 			$price = $vipOrder->price;
 			$vipOrder->wx_outtrade_no = 'vip-user-'.$user->id.'-'.date('YmdHis');
+			$vipOrder->save();
 		}else{
 			$price = Constant::first()->vip_price;
 		
@@ -158,7 +159,7 @@ class UserController extends Controller
 			Log::info('qr content:'.$qrContent);
 // 			$qrImageUrl = '/vipQR/'.$order->id.'-'.rand(111, 999).'.svg';
 			$qrImageUrl = '/vipQR/abc'.rand(111, 999).'.svg';
-			$qrSVGContent = QRCode::size(300)->generate($qrContent);
+			$qrSVGContent = QrCode::size(300)->generate($qrContent);
 			return ['status' => 1, 'qrImageUrl' => $qrImageUrl, 'qrSVGContent' => $qrSVGContent];
 // 		}else{
 // 			return ['status' => 2];

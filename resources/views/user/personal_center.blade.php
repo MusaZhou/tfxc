@@ -210,11 +210,12 @@
 			<div class="modal-content">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="activityDetailTitle">宁夏中阿金融论坛</h4>
+				<h4 class="modal-title text-center" id="activityDetailTitle">宁夏中阿金融论坛</h4>
 			  </div>
 			  <div class="modal-body">
 				<div class="alert alert-danger" role="alert" id="errorActivityDetail"></div>
 				<div>
+					<input type="hidden" id="activityDetailId">
 					<div id="activityDetailContent" class="center-block" style="height:500px; overflow-y: auto; word-wrap: break-word;">
 						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
 						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
@@ -277,21 +278,31 @@
 						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
 						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
 					</div>
-					<div class="row" style="margin-top: 10px">
-						<div class="col-lg-12 col-md-12 text-left">
-							<label>支付金额(<span id="apply_price">100</span>元), 请扫描以下二维码支付:</label>
+					<div class="row activityPayInfo">
+						<div class="col-lg-4 col-md-4 text-left">
+							<label>支付金额(<span id="activityDetailPrice" class="text-danger"></span>元)</label>
+						</div>
+						<div class="col-lg-2 col-md-2 col-lg-offset-6 col-md-offset-6">
+							<button class="btn btn-primary" onclick="readyPayActivity(event)">支付</button>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-lg-4 col-md-4 col-lg-offset-4 col-lg-offset-4">
-							<img src="/image_download/vipQR/abc3.png" class="img-rounded" style="width: 100%; margin-top: 10px;">
+					<div class="row activityPayRow activityPayInfo" style="margin-top: 10px;">
+						<div class="col-lg-3 col-md-3">
+							<img src="{{ URL::asset('images/WePayLogo.png') }}" style="width: 100%;">
+						</div>
+						<div class="col-lg-6 col-md-6" id="activityQRImageRow">
+						</div>
+					</div>
+					<div class="row activityPayRow">
+						<div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3">
+							<img src="{{ URL::asset('images/wepay_scan_description.png') }}" style="width: 100%;">
 						</div>
 					</div>
 				</div>
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-				<button type="button" class="btn btn-primary" id="subscribeActivitySubmit">确定</button>
+<!-- 				<button type="button" class="btn btn-primary" id="subscribeActivitySubmit">确定</button> -->
 			  </div>
 			</div>
 		  </div>
@@ -309,6 +320,7 @@
 							  <table class="table table-striped table-bordered table-hover" id="current_activities_table">
 								<thead>
 									<tr>
+										<th>ID</th>
 										<th>活动名称</th>
 										<th>时间</th>
 										<th>地点</th>
@@ -323,11 +335,11 @@
 											//$province = $city->province;
 									?>
 									<tr>
+										<td>{{ $activity->id }}</td>
 										<td>{{ $activity->name }}</td>
-										
 										<td>{{ $startDate }}</td>
 										<td>{{ $city->name }}</td>
-										<td><a class="btn btn-primary" data-toggle="modal" data-target="#activityDetailModal" onclick="viewActivityDetail({{ $activity->id }}, false)">详情</a></td> 
+										<td><a class="btn btn-primary" onclick="viewActivityDetail({{ $activity->id }}, false)">详情</a></td> 
 									</tr>
 									@endforeach
 								</tbody>
@@ -352,6 +364,14 @@
 							<div class="row">
 								<div class="col-lg-12 col-md-12 text-left">
 									<h4>{{ $user->email }}</h4>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 col-md-3 text-right">
+									<h4>编号</h4>
+								</div>
+								<div class="col-lg-9 col-md-9 text-left">
+									<h4>{{ $user->id }}</h4>
 								</div>
 							</div>
 							<div class="row">
@@ -439,6 +459,7 @@
 								<table class="table table-striped table-bordered table-hover" id="my_activities_table">
 									<thead>
 										<tr>
+											<th>ID</th>
 											<th>活动名称</th>
 											<th>时间</th>
 											<th>地点</th>
@@ -461,12 +482,13 @@
 											$now = date('Y-m-d H:i:s');
 										?>
 										<tr>
+											<td>{{ $myActivity->id }}</td>
 											<td>{{ $myActivity->name }}</td>
 											<td>{{ $myActivity->start_time }}</td>
 											<td>{{ $city->name }}</td>
 											<td>{{ $activityOrder->price }}元</td>
 											<td>{{ $paymentDate }}</td>
-											<td><a class="btn btn-primary" data-toggle="modal" data-target="#activityDetailModal" onclick="viewActivityDetail({{ $myActivity->id }}, true)">详情</a></td> 
+											<td><a class="btn btn-primary" onclick="viewActivityDetail({{ $myActivity->id }}, true)">详情</a></td> 
 											<td>{{ $startTime > $now ? '即将开始' : ( $endTime > $now ? '正在进行' : '已经结束') }}</td>
 										</tr>
 										@endforeach
@@ -506,17 +528,18 @@
 			var oldPasswordCheck = false;
 			
 			$(function(){
-				$('.ad_list').DataTable({
+				$('.current_activities_table').DataTable({
 						"autoWidth": false,
 						"columnDefs": [
-								   { "width": "50%", "targets": 0},
-								   { "width": "20%", "targets": 1},
+								   { "width": "5%", "targets": 0},
+								   { "width": "45%", "targets": 1},
 								   { "width": "20%", "targets": 2},
-								   { "width": "10%", "targets": 3},
+								   { "width": "20%", "targets": 3},
+								   { "width": "10%", "targets": 4},
 								   ],
 						responsive: true,
 						"paging": false,
-						"order": [[1, "desc"]],
+						"order": [[0, "asc"]],
 						"searching": false,
 						language:{
 							"decimal":        "",
@@ -545,13 +568,14 @@
 				});
 				
 				var columnDefs = [
-								   { "width": "30%", "targets": 0},
-								   { "width": "20%", "targets": 1},
-								   { "width": "10%", "targets": 2},
+								   { "width": "5%", "targets": 0},
+								   { "width": "30%", "targets": 1},
+								   { "width": "15%", "targets": 2},
 								   { "width": "10%", "targets": 3},
 								   { "width": "10%", "targets": 4},
 								   { "width": "10%", "targets": 5},
 								   { "width": "10%", "targets": 6},
+								   { "width": "10%", "targets": 7},
 							   ];
 							   
 				initializeDataTable($('#my_activities_table'), columnDefs, 5, [[1, "desc"]]);
@@ -562,6 +586,7 @@
 				$('#errorActivityDetail').hide();
 				$('#headImageProgressRow').hide();
 				$('.vipPayRow').hide();
+				$('.activityPayRow').hide();
 
 				$('#profileGender').val(gender);
 				$('#profileGender').change();
@@ -697,6 +722,55 @@
 						}
 					});
 				}
+
+				event.preventDefault();
+			}
+
+			function viewActivityDetail(activityId, subscribed){
+				$.ajax({
+					url: '/user/get_activity_detail_by_id',
+					method: 'GET',
+					data: {
+							_token: '{{ csrf_token() }}',
+							activityId: activityId,
+							}
+				}).done(function(response){
+					if(response.status == 1){
+						var title = response.data.title;
+						var content = response.data.content;
+						var price = response.data.price;
+
+						$('#activityDetailId').val(activityId);
+						$('#activityDetailTitle').text(title);
+						$('#activityDetailContent').html(content);
+						$('#activityDetailPrice').text(price);
+
+						if(subscribed){
+							$('.activityPayInfo').hide();
+						}else{
+// 							$('.activityPayInfo').show();
+						}
+						$('#activityDetailModal').modal();
+					}
+				});
+			}
+
+			function readyPayActivity(event){
+				var activityId = $('#activityDetailId').val();
+
+				$.ajax({
+					url: '/user/wepay_prepare_subscribe_activity',
+					method: 'POST',
+					data: {
+							_token: '{{ csrf_token() }}',
+							activityId: activityId,
+						}
+				}).done(function(response){
+					if(response.status == 1){
+						$('#activityQRImageRow').html(response.qrSVGContent);
+						$('.activityPayRow').show();
+					}
+				});
 
 				event.preventDefault();
 			}

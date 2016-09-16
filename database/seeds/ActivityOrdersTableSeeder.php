@@ -25,7 +25,7 @@ class ActivityOrdersTableSeeder extends Seeder
 				[ 
 						'id' => 2,
 						'price' => '14.00',
-						'user_id' => 2,
+						'user_id' => 1,
 						'activity_id' => 2,
 						'payment_time' => '2016-08-28 12:00:00',
 						'note' => 'fsdaf',
@@ -35,7 +35,7 @@ class ActivityOrdersTableSeeder extends Seeder
 				[ 
 						'id' => 3,
 						'price' => '14.00',
-						'user_id' => 3,
+						'user_id' => 1,
 						'activity_id' => 3,
 						'payment_time' => '2016-08-28 12:00:00',
 						'note' => 'fsdaf',
@@ -45,7 +45,7 @@ class ActivityOrdersTableSeeder extends Seeder
 				[ 
 						'id' => 4,
 						'price' => '14.00',
-						'user_id' => 4,
+						'user_id' => 1,
 						'activity_id' => 1,
 						'payment_time' => '2016-08-28 12:00:00',
 						'note' => 'fsdaf',

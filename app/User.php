@@ -91,4 +91,8 @@ class User extends Model
 			return null;
 		}
 	}
+	
+	public function paidActivityOrders(){
+		return $this->activityOrders()->where('status', 2)->get();
+	}
 }

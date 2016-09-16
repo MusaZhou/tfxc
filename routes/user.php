@@ -29,3 +29,9 @@ Route::post('/check_password', 'UserController@checkPassword');
 Route::post('/upload_head_image', 'UserController@uploadHeadImage');
 
 Route::post('/wepay_prepare_vip_register', 'UserController@wepayPrepareVipRegister');
+
+//----------------------------------- ActivityController --------------------------------------------
+
+Route::get('/get_activity_detail_by_id', 'ActivityController@getActivityDetailById');
+
+Route::post('/wepay_prepare_subscribe_activity', 'ActivityController@wepayPrepareSubscribeActivity');
