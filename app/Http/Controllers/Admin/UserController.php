@@ -109,7 +109,6 @@ class UserController extends Controller
 		$vipOrder->price = $price;
 		$vipOrder->payment_type_id = 1;
 		$vipOrder->status = 1;
-		$vipOrder->wx_outtrade_no = 'vip-user-'.$userId.'-'.date('YmdHis');
 		$vipOrder->save();
 		
 		return ['status' => 1];

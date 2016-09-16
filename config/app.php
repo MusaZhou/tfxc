@@ -180,6 +180,7 @@ return [
     		
     	Stevenyangecho\UEditor\UEditorServiceProvider::class,
     	Overtrue\LaravelWechat\ServiceProvider::class,
+    	SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
     ],
 
     /*
@@ -227,7 +228,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
     	'Wechat' => Overtrue\LaravelWechat\Facade::class,
-
+    	'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
     ],
 
 ];

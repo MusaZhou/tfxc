@@ -55,6 +55,9 @@ class UserController extends Controller
 		
 		if(!empty($vipOrder)){
 			$price = $vipOrder->price;
+			$vipOrder->wx_outtrade_no = 'vip-user-'.$user->id.'-'.date('YmdHis');
+			$vipOrder->save();
+			
 		}else{
 			$price = Constant::first()->vip_price;
 				

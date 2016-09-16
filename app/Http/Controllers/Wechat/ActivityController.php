@@ -34,6 +34,8 @@ class ActivityController extends Controller
 		
 		if(!empty($activityOrder)){
 			$price = $activityOrder->price;
+			$activityOrder->wx_outtrade_no = 'activity-'.$activity->id.'-user-'.$user->id.'-'.date('YmdHis');
+			$activityOrder->save();
 		}else{
 			$price = $activity->price;
 		

@@ -124,7 +124,6 @@ class ActivityOrderController extends Controller
     	$activityOrder->price = $price;
     	$activityOrder->payment_type_id = 1;
     	$activityOrder->status = 1;
-    	$activityOrder->wx_outtrade_no = 'activity-'.$activityId.'-user-'.$userId.'-'.date('YmdHis');
     	$activityOrder->save();
     
     	return ['status' => 1];

@@ -10,6 +10,12 @@ use App\User;
 use App\Activity;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Wechat;
+use EasyWeChat\Payment\Order;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Constant;
+use App\VipOrder;
+use Log;
 
 class UserController extends Controller
 {
@@ -25,10 +31,20 @@ class UserController extends Controller
 			$myActivityList->push($activityOrder->activity);
 		}
 		
+		$vipOrder = $user->latestVipOrder();
+		
+		$price;
+		if(!empty($vipOrder)){
+			$price = $vipOrder->price;
+		}else{
+			$price = Constant::first()->vip_price;
+		}
+		
 		return view('user.personal_center', [
 											'user' => $user,
 											'activityList' => $activityList,
 											'myActivityList' => $myActivityList,
+											'vipPrice' => $price,
 											]);
 	}
 	
@@ -90,5 +106,62 @@ class UserController extends Controller
 		$user->save();
 		
 		return 1;
+	}
+	
+	public function wepayPrepareVipRegister(Request $request){
+		$user = User::find($request->session()->get('userId'));
+		
+		$user->job = $request->job;
+		$user->organization = $request->organization;
+		$user->location = $request->location;
+		$user->save();
+		
+		$vipOrder = $user->latestVipOrder();
+		
+		$price;
+		
+		if(!empty($vipOrder)){
+			$price = $vipOrder->price;
+			$vipOrder->wx_outtrade_no = 'vip-user-'.$user->id.'-'.date('YmdHis');
+		}else{
+			$price = Constant::first()->vip_price;
+		
+			$vipOrder = new VipOrder();
+			$vipOrder->user_id = $user->id;
+			$vipOrder->price = $price;
+			$vipOrder->status = 1;
+			$vipOrder->wx_outtrade_no = 'vip-user-'.$user->id.'-'.date('YmdHis');
+			$vipOrder->payment_type_id = 1;
+			$vipOrder->save();
+		}
+		
+// 		$payment = Wechat::payment();
+		
+		$attributes = [
+				'trade_type'       => 'NATIVE', // JSAPI，NATIVE，APP...
+				'body'             => '注册VIP会员',
+				'detail'           => '注册VIP会员',
+				'out_trade_no'     => $vipOrder->wx_outtrade_no,
+				'total_fee'        => $price * 100,
+				'notify_url'       => config('app.url').'/vip_order_notify', // 支付结果通知网址，如果不设置则会使用配置里的默认地
+		];
+		
+// 		$order = new Order($attributes);
+		
+// 		$result = $payment->prepare($order);
+		
+// 		if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
+// 			$prepayId = $result->prepay_id;
+// 			$codeUrl = $result->code_url;
+			$codeUrl = 'abcde';
+			$qrContent = 'weixin://wxpay/bizpayurl?sr='.$codeUrl;
+			Log::info('qr content:'.$qrContent);
+// 			$qrImageUrl = '/vipQR/'.$order->id.'-'.rand(111, 999).'.svg';
+			$qrImageUrl = '/vipQR/abc'.rand(111, 999).'.svg';
+			$qrSVGContent = QRCode::size(300)->generate($qrContent);
+			return ['status' => 1, 'qrImageUrl' => $qrImageUrl, 'qrSVGContent' => $qrSVGContent];
+// 		}else{
+// 			return ['status' => 2];
+// 		}
 	}
 }

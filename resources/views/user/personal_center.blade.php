@@ -173,13 +173,24 @@
 					</div>
 					<div class="form-group">
 						<div class="row">
-							<div class="col-lg-12 col-md-12 text-left">
-								<label>支付金额(<span id="apply_price">100</span>元), 请扫描以下二维码支付:</label>
+							<div class="col-lg-4 col-md-4 text-left">
+								<label>支付金额(<span id="vip_register_price" class="text-danger">{{ $vipPrice }}</span>元)</label>
+							</div>
+							<div class="col-lg-2 col-md-2 col-lg-offset-6 col-md-offset-6">
+								<button class="btn btn-primary" onclick="readyPayVipRegistration(event)">支付</button>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-lg-4 col-md-4 col-lg-offset-4 col-lg-offset-4">
-								<img src="image/user.png" class="img-rounded" style="width: 100%; margin-top: 10px;">
+						<div class="row vipPayRow" style="margin-top: 10px;">
+							<div class="col-lg-3 col-md-3">
+								<img src="{{ URL::asset('images/WePayLogo.png') }}" style="width: 100%;">
+							</div>
+							<div class="col-lg-6 col-md-6" id="vipQRImageRow">
+								<!--  <img id="wepayVipQRImage" src="" class="img-rounded" style="width: 100%;">-->
+							</div>
+						</div>
+						<div class="row vipPayRow">
+							<div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3">
+								<img src="{{ URL::asset('images/wepay_scan_description.png') }}" style="width: 100%;">
 							</div>
 						</div>
 					</div>
@@ -187,7 +198,7 @@
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-				<button type="button" class="btn btn-primary" id="applyVipUserSubmit">确定</button>
+<!-- 				<button type="button" class="btn btn-primary" id="applyVipUserSubmit">确定</button> -->
 			  </div>
 			</div>
 		  </div>
@@ -273,14 +284,14 @@
 					</div>
 					<div class="row">
 						<div class="col-lg-4 col-md-4 col-lg-offset-4 col-lg-offset-4">
-							<img src="image/user.png" class="img-rounded" style="width: 100%; margin-top: 10px;">
+							<img src="/image_download/vipQR/abc3.png" class="img-rounded" style="width: 100%; margin-top: 10px;">
 						</div>
 					</div>
 				</div>
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-				<button type="button" class="btn btn-primary" id="applyVipUserSubmit">确定</button>
+				<button type="button" class="btn btn-primary" id="subscribeActivitySubmit">确定</button>
 			  </div>
 			</div>
 		  </div>
@@ -550,6 +561,7 @@
 				$('#errorApplyVipUser').hide();
 				$('#errorActivityDetail').hide();
 				$('#headImageProgressRow').hide();
+				$('.vipPayRow').hide();
 
 				$('#profileGender').val(gender);
 				$('#profileGender').change();
@@ -656,6 +668,37 @@
 
 			function openImageBrowser(){
 				$('#headImageFile').click();
+			}
+
+			function readyPayVipRegistration(event){
+				var job = $('#vipJob').val().trim();
+				var organization = $('#vipOrganization').val().trim();
+				var location = $('#vipLocation').val().trim();
+
+				if(job == '' || organization == '' || location == ''){
+					$('#errorApplyVipUser').text('请完成必填项');
+					$('#errorApplyVipUser').show();
+				}else{
+					$('#errorApplyVipUser').hide();
+					$.ajax({
+						url: '/user/wepay_prepare_vip_register',
+						method: 'POST',
+						data: {
+								_token: '{{ csrf_token() }}',
+								job: job,
+								organization: organization,
+								location: location
+							}
+					}).done(function(response){
+						if(response.status == 1){
+// 							$('#wepayVipQRImage').prop('src', '/image_download/' + response.qrImageUrl);
+							$('#vipQRImageRow').html(response.qrSVGContent);
+							$('.vipPayRow').show();
+						}
+					});
+				}
+
+				event.preventDefault();
 			}
 		</script>
 	</body>
