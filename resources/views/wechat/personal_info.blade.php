@@ -60,7 +60,7 @@
 	   
 		<script type="text/javascript">
 		$(function(){
-			
+			location.href="/wechat/show_vip_register";
 		});
 		
 		</script>
