@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Activity;
 use App\ActivityOrder;
 use App\User;
+use Wechat;
+use EasyWeChat\Payment\Order;
 
 class ActivityController extends Controller
 {
@@ -49,6 +51,36 @@ class ActivityController extends Controller
 			$activityOrder->save();
 		}
 		
-		return view('wechat.make_payment', ['amount' => $price, 'orderType' => 2, 'outTradeNo' => $activityOrder->wx_outtrade_no]);
+		$payment = Wechat::payment();
+		
+		$attributes = [
+				'trade_type'       => 'JSAPI', // JSAPI，NATIVE，APP...
+				'body'             => '报名活动',
+				'detail'           => '报名活动',
+				'out_trade_no'     => $activityOrder->wx_outtrade_no,
+				'total_fee'        => $price * 100,
+				'notify_url'       => config('app.url').'/activity_order_notify', // 支付结果通知网址，如果不设置则会使用配置里的默认地
+		];
+		
+		$order = new Order($attributes);
+		
+		$result = $payment->prepare($order);
+		
+		if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
+			$prepayId = $result->prepay_id;
+			$config = $payment->configForJSSDKPayment($prepayId);
+				
+			return view('wechat.make_payment', ['amount' => $price,
+												'orderType' => 2,
+												'outTradeNo' => $activityOrder->wx_outtrade_no,
+												'config' => $config,
+			]);
+		}else{
+			return '';
+		}		
+	}
+	
+	public function showActivitySubscribeSuccess(Request $request){
+		return view('wechat.activity_subscribe_success');
 	}
 }

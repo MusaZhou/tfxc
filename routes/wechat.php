@@ -25,6 +25,8 @@ Route::get('/personal_info', 'UserController@personalInfo');
 
 Route::get('/personal_activity_history', 'UserController@activityHistory');
 
+Route::get('/show_vip_register_success', 'UserController@showVipRegisterSuccess');
+
 //---------------------- ActivityController -------------------------------
 
 Route::get('/activity_list', 'ActivityController@activityList');
@@ -32,3 +34,5 @@ Route::get('/activity_list', 'ActivityController@activityList');
 Route::get('/activity_detail/{activityId}', 'ActivityController@activityDetail');
 
 Route::get('/subscribe_activity/{activityId}', 'ActivityController@subscribeActivity');
+
+Route::get('/show_activity_subscribe_success', 'ActivityController@showActivitySubscribeSuccess');

@@ -18,9 +18,31 @@
 
 @section('js')
 	@parent
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 		$(function(){
-			
+			wx.config({!! $js->config(array('chooseWXPay'), true) !!});
+
+			wx.ready(function(){
+				wx.chooseWXPay({
+        		    timestamp: {{ $config['timestamp'] }},
+        		    nonceStr: '{{ $config['nonceStr'] }}',
+        		    package: '{{ $config['package'] }}',
+        		    signType: '{{ $config['signType'] }}',
+        		    paySign: '{{ $config['paySign'] }}', // 支付签名
+        		    success: function (res) {
+            		    @if($orderType == 1)
+        		        	location.href="/wechat/show_vip_register_success";
+        		        @elseif($orderType == 2)
+        		        	location.href="/wechat/show_activity_subscribe_success";
+        		        @endif
+        		    },
+        		    fail: function(res) {
+						alert('支付失败');
+						window.history.back();
+            		}
+        		});
+			});
 		});
 		
 		</script>

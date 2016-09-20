@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Constant;
 use App\VipOrder;
+use Wechat;
+use EasyWeChat\Payment\Order;
 
 class UserController extends Controller
 {
@@ -69,8 +71,34 @@ class UserController extends Controller
 			$vipOrder->payment_type_id = 1;
 			$vipOrder->save();
 		}
-	
-		return view('wechat.make_payment', ['amount' => $price, 'orderType' => 1, 'outTradeNo' => $vipOrder->wx_outtrade_no]);
+		
+		$payment = Wechat::payment();
+		
+		$attributes = [
+				'trade_type'       => 'JSAPI', // JSAPI，NATIVE，APP...
+				'body'             => '注册VIP会员',
+				'detail'           => '注册VIP会员',
+				'out_trade_no'     => $vipOrder->wx_outtrade_no,
+				'total_fee'        => $price * 100,
+				'notify_url'       => config('app.url').'/vip_order_notify', // 支付结果通知网址，如果不设置则会使用配置里的默认地
+		];
+		
+		$order = new Order($attributes);
+
+		$result = $payment->prepare($order);
+
+		if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
+			$prepayId = $result->prepay_id;
+			$config = $payment->configForJSSDKPayment($prepayId);
+			
+			return view('wechat.make_payment', ['amount' => $price, 
+												'orderType' => 1, 
+												'outTradeNo' => $vipOrder->wx_outtrade_no,
+												'config' => $config,
+												]);
+		}else{
+			return '';
+		}
 	}
 	
 	public function personalInfo(Request $request){
@@ -89,5 +117,9 @@ class UserController extends Controller
 		}
 		
 		return view('wechat.activity_history', ['activityList' => $activityList, 'user' => $user]);
+	}
+	
+	public function showVipRegisterSuccess(Request $request){
+		return view('vip_register_success');
 	}
 }

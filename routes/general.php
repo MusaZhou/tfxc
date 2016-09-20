@@ -17,12 +17,12 @@ Route::get('/test', 'TestController@curlTest');
 
 Route::get('/other_test', 'TestController@otherTest');
 
-Route::any('/wechat/entry', 'Wechat\WechatController@entry');
+Route::any('/wechat/entry_point', 'Wechat\WechatController@entryPoint');
 
 Route::any('/wechat/create_menu', 'Wechat\WechatController@createMenu');
 
-Route::post('/wechat/course_order_notify', 'Wechat\OrderController@courseOrderNotify');
+Route::post('/vip_order_notify', 'GeneralController@vipOrderNotify');
 
-Route::post('/wechat/book_order_notify', 'Wechat\OrderController@bookOrderNotify');
+Route::post('/activity_order_notify', 'GeneralController@activityOrderNotify');
 
 Route::get('/emptyTableData', 'GeneralController@emptyTableData');
