@@ -5,9 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Log;
-use App\Buyer;
+use App\User;
 
-class BuyerCheck
+class UserCheck
 {
     /**
      * Handle an incoming request.
@@ -25,13 +25,14 @@ class BuyerCheck
     	$buyer = Buyer::where('open_id', $openId)->first();
     	
     	if(empty($buyer)){
-    		$buyer = new Buyer();
-    		$buyer->open_id = $openId;
-    		$buyer->nick_name = $wechatUser->name;
-    		$buyer->save();
+    		$user = new User();
+    		$user->open_id = $openId;
+    		$user->wechat_name = $wechatUser->getName();
+    		$user->head_image_url = $wechatUser->getAvatar();
+    		$user->save();
     	}
     	
-    	session(['buyerId' => $buyer->id]);
+    	session(['userId' => $user->id]);
     	
         return $next($request);
     }
