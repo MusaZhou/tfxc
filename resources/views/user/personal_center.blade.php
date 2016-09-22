@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<!--<meta name="csrf-token" content="{{ csrf_token() }}">-->
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 
 		<title>天方信诚-会员中心</title>
 
@@ -189,6 +189,9 @@
 							<div class="col-lg-6 col-md-6" id="vipQRImageRow">
 								<!--  <img id="wepayVipQRImage" src="" class="img-rounded" style="width: 100%;">-->
 							</div>
+							<div class="col-lg-3 col-md-3">
+								<button class="btn btn-primary" onclick="finishPay()">支付已完成</button>
+							</div>
 						</div>
 						<div class="row vipPayRow">
 							<div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3">
@@ -233,6 +236,9 @@
 							<img src="{{ URL::asset('images/WePayLogo.png') }}" style="width: 100%;">
 						</div>
 						<div class="col-lg-6 col-md-6" id="activityQRImageRow">
+						</div>
+						<div class="col-lg-3 col-md-3">
+							<button class="btn btn-primary" onclick="finishPay()">支付已完成</button>
 						</div>
 					</div>
 					<div class="row activityPayRow">
@@ -719,6 +725,10 @@
 				});
 
 				event.preventDefault();
+			}
+
+			function finishPay(){
+				location.reload();
 			}
 		</script>
 	</body>

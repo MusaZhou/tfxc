@@ -123,6 +123,7 @@ class UserController extends Controller
 		if(!empty($vipOrder)){
 			$price = $vipOrder->price;
 			$vipOrder->wx_outtrade_no = 'vip-user-'.$user->id.'-'.date('YmdHis');
+			$vipOrder->wxpay_type = 2;
 			$vipOrder->save();
 		}else{
 			$price = Constant::first()->vip_price;
@@ -133,6 +134,7 @@ class UserController extends Controller
 			$vipOrder->status = 1;
 			$vipOrder->wx_outtrade_no = 'vip-user-'.$user->id.'-'.date('YmdHis');
 			$vipOrder->payment_type_id = 1;
+			$vipOrder->wxpay_type = 2;
 			$vipOrder->save();
 		}
 		

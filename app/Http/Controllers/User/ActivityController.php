@@ -50,6 +50,7 @@ class ActivityController extends Controller
 		if(!empty($activityOrder)){
 			$price = $activityOrder->price;
 			$activityOrder->wx_outtrade_no = 'activity-'.$activity->id.'-user-'.$user->id.'-'.date('YmdHis');
+			$activityOrder->wxpay_type = 2;
 			$activityOrder->save();
 		}else{
 			$price = $activity->price;
@@ -60,6 +61,7 @@ class ActivityController extends Controller
 			$activityOrder->status = 1;
 			$activityOrder->wx_outtrade_no = 'activity-'.$activity->id.'-user-'.$user->id.'-'.date('YmdHis');
 			$activityOrder->payment_type_id = 1;
+			$activityOrder->wxpay_type = 2;
 			$activityOrder->save();
 		}
 		

@@ -18,7 +18,8 @@ class VipOrdersTableSeeder extends Seeder
 						'status' => 1,
 						'user_id' => 1,
 						'payment_time' => '2016-08-28',
-						'payment_type_id' => 1 
+						'payment_type_id' => 1,
+        				'wxpay_type' => 1,
 				],
 				[ 
 						'id' => 2,
@@ -26,7 +27,8 @@ class VipOrdersTableSeeder extends Seeder
 						'status' => 1,
 						'user_id' => 1,
 						'payment_time' => '2016-08-28',
-						'payment_type_id' => 2 
+						'payment_type_id' => 2,
+        				'wxpay_type' => 1,
 				],
 				[ 
 						'id' => 3,
@@ -34,7 +36,8 @@ class VipOrdersTableSeeder extends Seeder
 						'status' => 1,
 						'user_id' => 2,
 						'payment_time' => '2016-08-28',
-						'payment_type_id' => 3 
+						'payment_type_id' => 3,
+        				'wxpay_type' => 2, 
 				],
 				[ 
 						'id' => 4,
@@ -42,7 +45,8 @@ class VipOrdersTableSeeder extends Seeder
 						'status' => 1,
 						'user_id' => 2,
 						'payment_time' => '2016-08-28',
-						'payment_type_id' => 1 
+						'payment_type_id' => 1,
+        				'wxpay_type' => 1, 
 				],
 				[ 
 						'id' => 5,
@@ -50,7 +54,8 @@ class VipOrdersTableSeeder extends Seeder
 						'status' => 1,
 						'user_id' => 3,
 						'payment_time' => '2016-08-28',
-						'payment_type_id' => 2 
+						'payment_type_id' => 2,
+        				'wxpay_type' => 2, 
 				],
 				[ 
 						'id' => 6,
@@ -58,7 +63,8 @@ class VipOrdersTableSeeder extends Seeder
 						'status' => 1,
 						'user_id' => 3,
 						'payment_time' => '2016-08-28',
-						'payment_type_id' => 3 
+						'payment_type_id' => 3,
+        				'wxpay_type' => 1, 
 				],
         ]);
     }

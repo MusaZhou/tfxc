@@ -21,6 +21,7 @@ class ActivityOrdersTableSeeder extends Seeder
 						'note' => 'fsdaf',
 						'payment_type_id' => 1,
         				'status' => 1,
+        				'wxpay_type' => 1,
 				],
 				[ 
 						'id' => 2,
@@ -31,6 +32,7 @@ class ActivityOrdersTableSeeder extends Seeder
 						'note' => 'fsdaf',
 						'payment_type_id' => 2,
 						'status' => 2,
+						'wxpay_type' => 1,
 				],
 				[ 
 						'id' => 3,
@@ -41,6 +43,7 @@ class ActivityOrdersTableSeeder extends Seeder
 						'note' => 'fsdaf',
 						'payment_type_id' => 3,
 						'status' => 2,
+						'wxpay_type' => 1,
 				],
 				[ 
 						'id' => 4,
@@ -51,6 +54,7 @@ class ActivityOrdersTableSeeder extends Seeder
 						'note' => 'fsdaf',
 						'payment_type_id' => 1,
 						'status' => 2,
+						'wxpay_type' => 2,
 				],
         		
         ]);

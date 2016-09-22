@@ -53,6 +53,7 @@ class Initialize extends Migration
         	$table->integer('payment_type_id')->unsigned()->nullable();
         	$table->string('wx_outtrade_no')->nullable();
         	$table->string('wx_transaction_no')->nullable();
+        	$table->integer('wxpay_type')->unsigned()->nullable();
         	$table->dateTime('created_at')->nullable();
         	$table->dateTime('updated_at')->nullable();
         	
@@ -107,6 +108,7 @@ class Initialize extends Migration
         	$table->integer('status')->unsigned()->default(1);
         	$table->string('wx_outtrade_no')->nullable();
         	$table->string('wx_transaction_no')->nullable();
+        	$table->integer('wxpay_type')->unsigned()->nullable();
         	$table->dateTime('created_at')->nullable();
         	$table->dateTime('updated_at')->nullable();
         	
