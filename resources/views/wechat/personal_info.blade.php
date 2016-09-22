@@ -27,6 +27,11 @@
 				<div class="col-xs-7 item-content" id="phone">{{ $user->phone }}</div>
 			</div>
 			<div class="row">
+				<div class="col-xs-5 text-left item-label">邮箱</div>
+				<div class="col-xs-7 item-content" id="email">{{ $user->email }}</div>
+			</div>
+			@if($user->isVip())
+			<div class="row">
 				<div class="col-xs-5 text-left item-label">职位</div>
 				<div class="col-xs-7 item-content" id="job">{{ $user->job }}</div>
 			</div>
@@ -39,19 +44,16 @@
 				<div class="col-xs-7 item-content" id="location">{{ $user->location }}</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-5 text-left item-label">邮箱</div>
-				<div class="col-xs-7 item-content" id="email">{{ $user->email }}</div>
-			</div>
-			<div class="row">
 				<div class="col-xs-5 text-left item-label">会员有效期</div>
 				<?php $vipPeriod = $user->currentVipPeriod();?>
-				@if(!empty($vipPeriod))
 				<div class="col-xs-7 item-content" id="vipPeriod">{{ $vipPeriod->start_date.'~'.$vipPeriod->end_date }}</div>
-				@endif
 			</div>
+			@endif
+			@if(!$user->isVip())
 			<div class="row">
 				<button type="button" class="btn btn-primary text-center center-block" style="font-size: 1.3em; margin-top: 10px;" onclick="register()">注册正式会员</button>
 			</div>
+			@endif
 		</div>
 @endsection
 

@@ -20,11 +20,11 @@
 				<input type="text" class="form-control" id="name" name="name" placeholder="姓名">
 			</div>
 			<div class="form-group">
-				<label for="userName">电话</label>
-				<input type="phone" class="form-control" id="phone" name="phone" placeholder="电话">
+				<label for="phone">电话</label>
+				<input type="text" class="form-control" id="phone" name="phone" placeholder="电话">
 			</div>
 			<div class="form-group">
-				<label>邮箱</label>
+				<label for="email">邮箱</label>
 				<input type="email" class="form-control" id="email" name="email" placeholder="邮箱">
 			</div>
 			<div class="alert alert-danger" role="alert" id="error"></div>

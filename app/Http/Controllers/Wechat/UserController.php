@@ -15,7 +15,12 @@ use EasyWeChat\Payment\Order;
 class UserController extends Controller
 {
     public function showNormalRegister(Request $request){
-		return view('wechat.normal_register');
+    	$user = User::find($request->session()->get('userId', 1));
+    	if($user->status == 1){
+    		return view('wechat.error',['error' => '您已经是我们的普通会员了:)']);
+    	}else if($user->status == 0){
+    		return view('wechat.normal_register');
+    	}
 	}
 	
 	public function registerNormalUser(Request $request){

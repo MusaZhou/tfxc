@@ -22,9 +22,9 @@ class UserCheck
     	$wechatUser = session('wechat.oauth_user');
     	$openId = $wechatUser->getId();
     	 
-    	$buyer = Buyer::where('open_id', $openId)->first();
+    	$user = User::where('open_id', $openId)->first();
     	
-    	if(empty($buyer)){
+    	if(empty($user)){
     		$user = new User();
     		$user->open_id = $openId;
     		$user->wechat_name = $wechatUser->getName();

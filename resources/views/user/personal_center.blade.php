@@ -82,6 +82,7 @@
 						<label>邮箱 *</label>
 						<input id="profileEmail" name="email" class="form-control" value="{{ $user->email }}"/>
 					</div>
+					@if($user->isVip())
 					<div class="form-group">
 						<label>职位</label>
 						<input id="profileJob" name="job" class="form-control" value="{{ $user->job }}"/>
@@ -101,6 +102,7 @@
 							<option value="2">女</option>
 						</select>
 					</div>
+					@endif
 				</form>
 			  </div>
 			  <div class="modal-footer">
@@ -217,66 +219,6 @@
 				<div>
 					<input type="hidden" id="activityDetailId">
 					<div id="activityDetailContent" class="center-block" style="height:500px; overflow-y: auto; word-wrap: break-word;">
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
-						fjkdsjfffffffffffffffffffffffffffffdkasfjksdajfkadjsfkjadfkjadskfjaskdfjkasdjfkasdjfkasdjfkasjfkasdjfkasjdfkjsafkjkasdjfkjasdfkjdskajfksdajfksadjfakfsjksjfksajkfjl
 					</div>
 					<div class="row activityPayInfo">
 						<div class="col-lg-4 col-md-4 text-left">
@@ -374,6 +316,7 @@
 									<h4>{{ $user->id }}</h4>
 								</div>
 							</div>
+							@if($user->isVip())
 							<div class="row">
 								<div class="col-lg-3 col-md-3 text-right">
 									<h4>职位</h4>
@@ -417,6 +360,7 @@
 									<h4>{{ $currentVipPeriod->start_date.' ~ '.$currentVipPeriod->end_date }}</h4>
 								</div>
 							</div>
+							@endif
 						</div>
 						<div class="col-lg-5 col-md-5" style="margin-top: 10px">
 							<div class="row" style="margin-top: 5px">
@@ -439,9 +383,11 @@
 							<div class="row" style="margin-top: 5px">
 								<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#changePasswordModal">修改登录密码</button>
 							</div>
+							@if(!$user->isVip())
 							<div class="row" style="margin-top: 5px">
 								<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#applyVipUserModal">注册正式会员</button>
 							</div>
+							@endif
 						</div>
 					</div>
 				</div>
