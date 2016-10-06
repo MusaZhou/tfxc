@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>天方信诚-用户平台</title>
+    <title>天方信诚-会员平台</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ URL::asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet">

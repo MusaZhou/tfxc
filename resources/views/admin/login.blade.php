@@ -36,15 +36,17 @@
 
     <div class="container">
     	<div class="row">
-    		<div class="col-lg-3 col-lg-offset-5" style="margin-top: 150px">
-    			<h1>天方信诚</h1>
+    		<div class="col-lg-4 col-lg-offset-4 text-center" style="margin-top: 100px">
+            	<img src="{{ URL::asset('images/logo.png') }}" style="width: 90%; margin: 0 auto;"/>
+    		</div>
+    	</div>
+    	<div class="row">
+    		<div class="col-lg-4 col-lg-offset-4 text-center">
+    			<h1>天方信诚-管理平台</h1>
     		</div>
     	</div>
         <div class="row" style="margin-top: 10px;">
-        	<div class="col-lg-3 col-lg-offset-3">
-            	<img src="{{ URL::asset('images/logo.png') }}" style="width: 90%; margin: 0px;"/>
-            </div>
-            <div class="col-lg-3">
+            <div class="col-lg-4 col-lg-offset-4">
                 <div class="login-panel panel panel-default" style="margin: 0px">
                     <div class="panel-heading">
                         <h3 class="panel-title">请登录</h3>
