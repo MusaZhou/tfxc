@@ -50,9 +50,8 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="tfxc-navbar-collapse">
 			  <ul class="nav navbar-nav navbar-right">
-				<li><a href="#" style="color: white">官网</a></li>
-				<li><a href="#" style="color: white">论坛</a></li>
-				<li><a href="#" style="color: white">退出账户</a></li>
+				<li><a href="/" style="color: white">官网</a></li>
+				<li><a href="/user/logout" style="color: white">退出账户</a></li>
 			  </ul>
 			</div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
