@@ -315,43 +315,43 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-lg-3 col-md-3 text-right">
+								<div class="col-lg-4 col-md-4 text-right">
 									<h4>编号</h4>
 								</div>
-								<div class="col-lg-9 col-md-9 text-left">
+								<div class="col-lg-8 col-md-8 text-left">
 									<h4>{{ $user->id }}</h4>
 								</div>
 							</div>
 							@if($user->isVip())
 							<div class="row">
-								<div class="col-lg-3 col-md-3 text-right">
+								<div class="col-lg-4 col-md-4 text-right">
 									<h4>职位</h4>
 								</div>
-								<div class="col-lg-9 col-md-9 text-left">
+								<div class="col-lg-8 col-md-8 text-left">
 									<h4>{{ $user->job }}</h4>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-lg-3 col-md-3 text-right">
+								<div class="col-lg-4 col-md-4 text-right">
 									<h4>单位</h4>
 								</div>
-								<div class="col-lg-9 col-md-9 text-left">
+								<div class="col-lg-8 col-md-8 text-left">
 									<h4>{{ $user->organization }}</h4>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-lg-3 col-md-3 text-right">
+								<div class="col-lg-4 col-md-4 text-right">
 									<h4>驻地</h4>
 								</div>
-								<div class="col-lg-9 col-md-9 text-left">
+								<div class="col-lg-8 col-md-8 text-left">
 									<h4>{{ $user->location }}</h4>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-lg-3 col-md-3 text-right">
+								<div class="col-lg-4 col-md-4 text-right">
 									<h4>性别</h4>
 								</div>
-								<div class="col-lg-9 col-md-9 text-left">
+								<div class="col-lg-8 col-md-8 text-left">
 									<h4>{{ $user->gender == 1 ? '男' : '女' }}</h4>
 								</div>
 							</div>
@@ -359,10 +359,10 @@
 								$currentVipPeriod = $user->currentVipPeriod();
 							?>
 							<div class="row">
-								<div class="col-lg-3 col-md-3 text-right">
+								<div class="col-lg-4 col-md-4 text-right">
 									<h4>会员</h4>
 								</div>
-								<div class="col-lg-9 col-md-9 text-left">
+								<div class="col-lg-8 col-md-8 text-left">
 									<h4>{{ $currentVipPeriod->start_date.' ~ '.$currentVipPeriod->end_date }}</h4>
 								</div>
 							</div>
