@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Wechat;
 
 class WechatController extends Controller
 {
-	public function entryPoint(Application $wechat){
-		$wechatServer = $wechat->server;
+	public function entryPoint(){
+		$wechatServer = Wechat::server();
     	$wechatServer->setMessageHandler(function($message){
     		return '欢迎使用';
     	});
@@ -19,7 +20,7 @@ class WechatController extends Controller
 	}
 	
 	public function createMenu(Application $wechat){
-		$menu = $wechat->menu;
+		$menu = Wechat::menu();
 		
 		$buttons = [
 				[
