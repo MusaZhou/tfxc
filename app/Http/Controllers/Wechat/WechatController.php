@@ -52,4 +52,16 @@ class WechatController extends Controller
 		
 		$menu->add($buttons);
 	}
+	
+	public function makePayment(Request $request){
+		$amount = $request->amount;
+		$orderType = $request->orderType;
+		$outTradeNo = $request->outTradeNo;
+		$config = $request->config;
+		return view('wecaht.make_payment', ['amount' => $price,
+											'orderType' => 1,
+											'outTradeNo' => $vipOrder->wx_outtrade_no,
+											'config' => $config,
+											]);
+	}
 }

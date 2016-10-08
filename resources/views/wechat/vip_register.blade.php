@@ -30,7 +30,7 @@
 			</div>
 			<label class="text-danger">一年期会费为{{ $price }}元</label>
 			<div class="alert alert-danger" role="alert" id="error"></div>
-			<button type="submit" class="btn btn-primary text-center center-block" style="font-size: 1em" onclick="register()">支付注册</button>
+			<button type="submit" class="btn btn-primary text-center center-block" style="font-size: 1em" >支付注册</button>
 		</form>
 @endsection
 
@@ -62,9 +62,6 @@
 			}
 		
 			return true;
-		}
-
-		function register(){
 		}
 		</script>
 @endsection

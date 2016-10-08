@@ -38,3 +38,7 @@ Route::get('/activity_detail/{activityId}', 'ActivityController@activityDetail')
 Route::get('/subscribe_activity/{activityId}', 'ActivityController@subscribeActivity')->middleware(RegisteredUserCheck::class);
 
 Route::get('/show_activity_subscribe_success', 'ActivityController@showActivitySubscribeSuccess');
+
+//----------------------Payment -------------------------------
+
+Route::get('/make_payment', 'WechatController@makePayment');

@@ -72,11 +72,17 @@ class ActivityController extends Controller
 			$prepayId = $result->prepay_id;
 			$config = $payment->configForJSSDKPayment($prepayId);
 				
-			return view('wechat.make_payment', ['amount' => $price,
+			return redirect('/wechat/make_payment')->withInput(
+												['amount' => $price,
 												'orderType' => 2,
 												'outTradeNo' => $activityOrder->wx_outtrade_no,
 												'config' => $config,
 			]);
+// 			return view('wechat.make_payment', ['amount' => $price,
+// 												'orderType' => 2,
+// 												'outTradeNo' => $activityOrder->wx_outtrade_no,
+// 												'config' => $config,
+// 			]);
 		}else{
 			return '';
 		}		

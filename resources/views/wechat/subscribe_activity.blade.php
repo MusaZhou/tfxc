@@ -39,6 +39,9 @@
 		$(function(){
 			
 		});
-		
+
+		function paySubscribeActivity(){
+			location.href="/wechat/subscribe_activity/{{ $activity->id }}";
+		}
 		</script>
 @endsection
