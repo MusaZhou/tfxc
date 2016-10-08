@@ -26,12 +26,12 @@ class WechatController extends Controller
 				[
 						"type" => "view",
 						"name" => "注册会员",
-						"url"  => config('app.url'."/wechat/show_normal_register"),
+						"url"  => config('app.url')."/wechat/show_normal_register",
 				],
 				[
 						"type" => "view",
 						"name" => "当前活动",
-						"url"  => config('app.url'."/wechat/activity_list"),
+						"url"  => config('app.url')."/wechat/activity_list",
 				],
 				[
 						"name"       => "个人中心",
@@ -39,12 +39,12 @@ class WechatController extends Controller
 								[
 										"type" => "view",
 										"name" => "个人信息",
-										"url"  => config('app.url'."/wechat/personal_info"),
+										"url"  => config('app.url')."/wechat/personal_info",
 								],
 								[
 										"type" => "view",
 										"name" => "活动历史",
-										"url"  => config('app.url'."/wechat/personal_activity_history"),
+										"url"  => config('app.url')."/wechat/personal_activity_history",
 								],
 						],
 				],
