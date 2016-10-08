@@ -19,7 +19,7 @@ class WechatController extends Controller
     	return $wechatServer->serve();
 	}
 	
-	public function createMenu(Application $wechat){
+	public function createMenu(){
 		$menu = Wechat::menu();
 		
 		$buttons = [
