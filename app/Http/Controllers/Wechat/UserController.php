@@ -97,17 +97,17 @@ class UserController extends Controller
 		if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
 			$prepayId = $result->prepay_id;
 			$config = $payment->configForJSSDKPayment($prepayId);
-			return redirect('/wechat/make_payment')->withInput(
-												['amount' => $price, 
-												'orderType' => 1, 
-												'outTradeNo' => $vipOrder->wx_outtrade_no,
-												'config' => $config,
-												]);
-// 			return view('wechat.make_payment', ['amount' => $price, 
+// 			return redirect('/wechat/make_payment')->withInput(
+// 												['amount' => $price, 
 // 												'orderType' => 1, 
 // 												'outTradeNo' => $vipOrder->wx_outtrade_no,
 // 												'config' => $config,
 // 												]);
+			return view('wechat.make_payment', ['amount' => $price, 
+												'orderType' => 1, 
+												'outTradeNo' => $vipOrder->wx_outtrade_no,
+												'config' => $config,
+												]);
 		}else{
 			return '';
 		}
