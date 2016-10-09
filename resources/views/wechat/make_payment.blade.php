@@ -43,7 +43,7 @@
     		        @endif
     		    },
     		    fail: function(res) {
-					alert('支付失败');
+					alert('支付失败:' + res.errMsg);
 					window.history.back();
         		}
     		});
