@@ -346,14 +346,14 @@
 									<h4>{{ $user->location }}</h4>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-lg-4 col-md-4 text-right">
-									<h4>性别</h4>
-								</div>
+<!-- 							<div class="row"> -->
+<!-- 								<div class="col-lg-4 col-md-4 text-right"> -->
+<!-- 									<h4>性别</h4> -->
+<!-- 								</div> -->
 <!-- 								<div class="col-lg-8 col-md-8 text-left"> -->
 <!-- 									<h4>{{ $user->gender == 1 ? '男' : '女' }}</h4> -->
 <!-- 								</div> -->
-							</div>
+<!-- 							</div> -->
 							<?php 
 								$currentVipPeriod = $user->currentVipPeriod();
 							?>
