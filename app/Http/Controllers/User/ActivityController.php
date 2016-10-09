@@ -11,6 +11,7 @@ use App\User;
 use Log;
 use QrCode;
 use App\ActivityOrder;
+use EasyWeChat\Payment\Order;
 
 class ActivityController extends Controller
 {
