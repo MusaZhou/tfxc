@@ -369,7 +369,11 @@
 						</div>
 						<div class="col-lg-5 col-md-5" style="margin-top: 10px">
 							<div class="row" style="margin-top: 5px">
-								<img src="/image_download/{{ $user->head_image_url }}" class="img-rounded img-responsive center-block" style="width: 100%; height: auto;" id="headImage">
+								@if(starts_with($user->head_image_url, 'http'))
+									<img src="{{ $user->head_image_url }}" class="img-rounded img-responsive center-block" style="width: 100%; height: auto;" id="headImage">
+								@else
+									<img src="/image_download/{{ $user->head_image_url }}" class="img-rounded img-responsive center-block" style="width: 100%; height: auto;" id="headImage">
+								@endif
 							</div>
 							<div class="row" id="headImageProgressRow">
 								<div class="progress">
@@ -475,7 +479,7 @@
 		</script>
 		
 		<script>
-			var gender = {{ $user->gender }};
+			var gender = {{ $user->gender or 1}};
 			var oldPasswordCheck = false;
 			
 			$(function(){
