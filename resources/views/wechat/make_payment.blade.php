@@ -1,6 +1,6 @@
 @extends('wechat_master')
 
-@section('title', '注册会员')
+@section('title', '支付')
 
 @section('content')
 		<div class="container-fluid header-container">

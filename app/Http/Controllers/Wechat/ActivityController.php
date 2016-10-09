@@ -63,6 +63,7 @@ class ActivityController extends Controller
 // 				'total_fee'        => $price * 100,
 				'total_fee'        => 1,
 				'notify_url'       => config('app.url').'/activity_order_notify', // 支付结果通知网址，如果不设置则会使用配置里的默认地
+				'openid' 		   => $user->open_id,
 		];
 		
 		$order = new Order($attributes);
@@ -79,10 +80,13 @@ class ActivityController extends Controller
 // 												'outTradeNo' => $activityOrder->wx_outtrade_no,
 // 												'config' => $config,
 // 			]);
+			
+			$js = Wechat::js();
 			return view('wechat.make_payment', ['amount' => $price,
 												'orderType' => 2,
 												'outTradeNo' => $activityOrder->wx_outtrade_no,
 												'config' => $config,
+												'js' => $js,
 			]);
 		}else{
 			return '';

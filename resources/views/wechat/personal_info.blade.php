@@ -15,7 +15,11 @@
 		<div class="container-fluid content border-form" style="margin-top: 50px; font-size: 1em">
 			<div class="row">
 				<div class="col-xs-6 col-xs-offset-3">
-					<img src="/image_download/{{ $user->head_image_url }}" class="img-circle" style="width:100%; height:100%">
+					@if(starts_with($user->head_image_url, 'http'))
+						<img src="{{ $user->head_image_url }}" class="img-circle" style="width:100%; height:100%">
+					@else
+						<img src="/image_download/{{ $user->head_image_url }}" class="img-circle" style="width:100%; height:100%">
+					@endif
 				</div> 
 			</div>
 			<div class="row">
@@ -62,8 +66,12 @@
 	   
 		<script type="text/javascript">
 		$(function(){
-			location.href="/wechat/show_vip_register";
+			
 		});
+
+		function register(){
+			location.href="/wechat/show_vip_register";
+		}
 		
 		</script>
 @endsection

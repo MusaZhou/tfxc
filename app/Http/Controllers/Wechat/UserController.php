@@ -30,6 +30,7 @@ class UserController extends Controller
 		$user->email = $request->email;
 		$password = '123456';
 		$user->password = bcrypt($password);
+		$user->status = 1;
 		$user->save();
 		
 		return view('wechat.normal_register_success', ['password' => $password]);
@@ -89,6 +90,7 @@ class UserController extends Controller
 // 				'total_fee'        => $price * 100,
 				'total_fee'        => 1,
 				'notify_url'       => config('app.url').'/vip_order_notify', // 支付结果通知网址，如果不设置则会使用配置里的默认地
+				'openid' 		   => $user->open_id,
 		];
 		
 		$order = new Order($attributes);
@@ -104,10 +106,12 @@ class UserController extends Controller
 // 												'outTradeNo' => $vipOrder->wx_outtrade_no,
 // 												'config' => $config,
 // 												]);
+			$js = Wechat::js();
 			return view('wechat.make_payment', ['amount' => $price, 
 												'orderType' => 1, 
 												'outTradeNo' => $vipOrder->wx_outtrade_no,
 												'config' => $config,
+												'js' => $js,
 												]);
 		}else{
 			return '';

@@ -12,7 +12,7 @@
 				</div>
 			</header>
 		</div>
-		<h2 class="text-center text-success">{{ $error }}</h2>
+		<h4 class="text-center text-success">{{ $error }}</h4>
 @endsection
 
 @section('js')

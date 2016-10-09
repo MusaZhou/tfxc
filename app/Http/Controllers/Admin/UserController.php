@@ -47,6 +47,7 @@ class UserController extends Controller
 		$user->gender = $gender;
 		$user->name = $name;
 		$user->note = $note;
+		$user->status = 1;
 		
 		$user->save();
 		
