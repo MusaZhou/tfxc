@@ -66,7 +66,7 @@ class ActivityController extends Controller
 			$activityOrder->save();
 		}
 		
-		// 		$payment = Wechat::payment();
+		$payment = Wechat::payment();
 		
 		$attributes = [
 				'trade_type'       => 'NATIVE', // JSAPI，NATIVE，APP...
