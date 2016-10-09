@@ -24,7 +24,7 @@ class Initialize extends Migration
         	$table->string('wechat_name')->nullable();
         	$table->string('wechat_icon')->nullable();
         	$table->string('open_id')->nullable();
-        	$table->integer('gender')->unsigned()->nullable();
+        	$table->integer('gender')->unsigned()->default(1);
         	$table->string('note')->nullable();
         	$table->string('head_image_url')->nullable();
         	$table->string('password')->nullable();

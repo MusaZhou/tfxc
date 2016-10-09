@@ -17,7 +17,7 @@ class RegisteredUserCheck
     public function handle($request, Closure $next)
     {
     	$user = User::find($request->session()->get('userId'));
-    	
+    	Log::info('user status:'.$user->status);
     	if($user->status == 0){
     		redirect('/wechat/show_normal_register');
     	}
