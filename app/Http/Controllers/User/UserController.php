@@ -160,7 +160,7 @@ class UserController extends Controller
 // 			$codeUrl = 'abcde';
 			$qrContent = 'weixin://wxpay/bizpayurl?sr='.$codeUrl;
 // 			Log::info('qr content:'.$qrContent);
-			$qrImageUrl = '/vipQR/'.$order->id.'-'.rand(111, 999).'.svg';
+			$qrImageUrl = '/QR/vip/'.$order->id.'-'.rand(111, 999).'.svg';
 // 			$qrImageUrl = '/vipQR/abc'.rand(111, 999).'.svg';
 			$qrSVGContent = QrCode::size(300)->generate($qrContent);
 			return ['status' => 1, 'qrImageUrl' => $qrImageUrl, 'qrSVGContent' => $qrSVGContent];

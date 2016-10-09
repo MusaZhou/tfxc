@@ -12,6 +12,7 @@ use Log;
 use QrCode;
 use App\ActivityOrder;
 use EasyWeChat\Payment\Order;
+use Wechat;
 
 class ActivityController extends Controller
 {
@@ -85,10 +86,11 @@ class ActivityController extends Controller
 		if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
 			$prepayId = $result->prepay_id;
 			$codeUrl = $result->code_url;
+			Log::info('code url:'.$codeUrl);
 // 		$codeUrl = 'abcde';
 			$qrContent = 'weixin://wxpay/bizpayurl?sr='.$codeUrl;
 // 			Log::info('qr content:'.$qrContent);
-			$qrImageUrl = '/vipQR/'.$order->id.'-'.rand(111, 999).'.svg';
+			$qrImageUrl = '/QR/activity/'.$order->id.'-'.rand(111, 999).'.svg';
 // 		$qrImageUrl = '/vipQR/abc'.rand(111, 999).'.svg';
 			$qrSVGContent = QrCode::size(300)->generate($qrContent);
 			return ['status' => 1, 'qrImageUrl' => $qrImageUrl, 'qrSVGContent' => $qrSVGContent];
