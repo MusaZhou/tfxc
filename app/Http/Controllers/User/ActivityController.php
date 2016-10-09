@@ -77,22 +77,22 @@ class ActivityController extends Controller
 				'notify_url'       => config('app.url').'/activity_order_notify', // 支付结果通知网址，如果不设置则会使用配置里的默认地
 		];
 		
-		// 		$order = new Order($attributes);
-		
-		// 		$result = $payment->prepare($order);
-		
-		// 		if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
-		// 			$prepayId = $result->prepay_id;
-		// 			$codeUrl = $result->code_url;
-		$codeUrl = 'abcde';
-		$qrContent = 'weixin://wxpay/bizpayurl?sr='.$codeUrl;
-		Log::info('qr content:'.$qrContent);
-		// 			$qrImageUrl = '/vipQR/'.$order->id.'-'.rand(111, 999).'.svg';
-		$qrImageUrl = '/vipQR/abc'.rand(111, 999).'.svg';
-		$qrSVGContent = QrCode::size(300)->generate($qrContent);
-		return ['status' => 1, 'qrImageUrl' => $qrImageUrl, 'qrSVGContent' => $qrSVGContent];
-		// 		}else{
-		// 			return ['status' => 2];
-		// 		}
+		$order = new Order($attributes);
+
+		$result = $payment->prepare($order);
+
+		if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
+			$prepayId = $result->prepay_id;
+			$codeUrl = $result->code_url;
+// 		$codeUrl = 'abcde';
+			$qrContent = 'weixin://wxpay/bizpayurl?sr='.$codeUrl;
+// 			Log::info('qr content:'.$qrContent);
+			$qrImageUrl = '/vipQR/'.$order->id.'-'.rand(111, 999).'.svg';
+// 		$qrImageUrl = '/vipQR/abc'.rand(111, 999).'.svg';
+			$qrSVGContent = QrCode::size(300)->generate($qrContent);
+			return ['status' => 1, 'qrImageUrl' => $qrImageUrl, 'qrSVGContent' => $qrSVGContent];
+		}else{
+			return ['status' => 2];
+		}
 	}
 }

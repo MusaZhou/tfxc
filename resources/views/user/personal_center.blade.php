@@ -222,7 +222,7 @@
 					<input type="hidden" id="activityDetailId">
 					<div id="activityDetailContent" class="center-block" style="height:500px; overflow-y: auto; word-wrap: break-word;">
 					</div>
-					<div class="row activityPayInfo">
+					<div class="row priceRow">
 						<div class="col-lg-4 col-md-4 text-left">
 							<label>支付金额(<span id="activityDetailPrice" class="text-danger"></span>元)</label>
 						</div>
@@ -230,7 +230,7 @@
 							<button class="btn btn-primary" onclick="readyPayActivity(event)">支付</button>
 						</div>
 					</div>
-					<div class="row activityPayRow activityPayInfo" style="margin-top: 10px;">
+					<div class="row activityPayRow" style="margin-top: 10px;">
 						<div class="col-lg-3 col-md-3">
 							<img src="{{ URL::asset('images/WePayLogo.png') }}" style="width: 100%;">
 						</div>
@@ -682,6 +682,7 @@
 			}
 
 			function viewActivityDetail(activityId, subscribed){
+				$('.activityPayRow').hide();
 				$.ajax({
 					url: '/user/get_activity_detail_by_id',
 					method: 'GET',
@@ -701,9 +702,9 @@
 						$('#activityDetailPrice').text(price);
 
 						if(subscribed){
-							$('.activityPayInfo').hide();
+							$('.priceRow').hide();
 						}else{
-// 							$('.activityPayInfo').show();
+							$('.priceRow').show();
 						}
 						$('#activityDetailModal').modal();
 					}
