@@ -45,7 +45,7 @@
 
 		function goToSubscribeActivity(activityId){
 // 			location.href="/wechat/make_payment/2/" + activityId;
-			location.href="/wechat/subscribe_activity/" + activityId;
+			location.href="/wechat/subscribe_activity?activityId=" + activityId;
 		}
 		</script>
 @endsection

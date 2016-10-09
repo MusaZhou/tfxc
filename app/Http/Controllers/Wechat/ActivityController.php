@@ -26,8 +26,9 @@ class ActivityController extends Controller
 		return view('wechat.activity_detail', ['activity' => $activity]);
 	}
 	
-	public function subscribeActivity(Request $request, $activityId){
+	public function subscribeActivity(Request $request){
 		$user = User::find($request->session()->get('userId', 1));
+		$activityId = $request->activityId;
 		$activity = Activity::find($activityId);
 		
 		$activityOrder = $user->latestActivityOrder($activity->id);

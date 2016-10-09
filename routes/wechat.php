@@ -35,7 +35,7 @@ Route::get('/activity_list', 'ActivityController@activityList');
 
 Route::get('/activity_detail/{activityId}', 'ActivityController@activityDetail');
 
-Route::get('/subscribe_activity/{activityId}', 'ActivityController@subscribeActivity')->middleware(RegisteredUserCheck::class);
+Route::get('/subscribe_activity', 'ActivityController@subscribeActivity')->middleware(RegisteredUserCheck::class);
 
 Route::get('/show_activity_subscribe_success', 'ActivityController@showActivitySubscribeSuccess');
 
