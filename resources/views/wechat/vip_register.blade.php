@@ -12,7 +12,7 @@
 				</div>
 			</header>
 		</div>
-		<form id="vipRegisterForm" name="vipRegisterForm" action="/wechat/make_payment" method="POST" style="padding: 5px; font-size: 1.2em" class="border-form">
+		<form id="vipRegisterForm" name="vipRegisterForm" action="/wechat/register_vip_user" method="POST" style="padding: 5px; font-size: 1.2em" class="border-form">
 			{{ csrf_field() }}
 			<label>姓名: <span id="userName">{{ $user->name }}</span></label><br/>
 			<label>电话: <span id="phone">{{ $user->phone }}</span></label>

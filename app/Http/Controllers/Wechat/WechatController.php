@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Wechat;
+use App\User;
+use App\Constant;
+use App\VipOrder;
+use App\Activity;
+use App\ActivityOrder;
+use EasyWeChat\Payment\Order;
 
 class WechatController extends Controller
 {

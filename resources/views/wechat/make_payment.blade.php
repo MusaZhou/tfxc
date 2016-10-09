@@ -23,9 +23,9 @@
 		$(function(){
 			wx.config({!! $js->config(array('chooseWXPay'), true) !!});
 
-			wx.ready(function(){
+// 			wx.ready(function(){
 				
-			});
+// 			});
 		});
 
 		function makePayment(){
