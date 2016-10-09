@@ -158,7 +158,8 @@ class UserController extends Controller
 			$prepayId = $result->prepay_id;
 			$codeUrl = $result->code_url;
 // 			$codeUrl = 'abcde';
-			$qrContent = 'weixin://wxpay/bizpayurl?sr='.$codeUrl;
+// 			$qrContent = 'weixin://wxpay/bizpayurl?sr='.$codeUrl;
+			$qrContent = $codeUrl;
 // 			Log::info('qr content:'.$qrContent);
 			$qrImageUrl = '/QR/vip/'.$order->id.'-'.rand(111, 999).'.svg';
 // 			$qrImageUrl = '/vipQR/abc'.rand(111, 999).'.svg';
