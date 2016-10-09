@@ -7,7 +7,7 @@
 			<header class="bg-primary">
 				<div class="row">
 					<div class="col-xs-10 col-xs-offset-1 text-center title">
-						注册正式会员
+						天方信诚-注册正式会员
 					</div>
 				</div>
 			</header>

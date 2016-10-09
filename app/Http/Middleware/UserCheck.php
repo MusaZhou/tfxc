@@ -25,9 +25,11 @@ class UserCheck
     	$user = User::where('open_id', $openId)->first();
     	
     	if(empty($user)){
+    		$wechatName = $wechatUser->getName();
     		$user = new User();
     		$user->open_id = $openId;
-    		$user->wechat_name = $wechatUser->getName();
+    		$user->wechat_name = $wechatName;
+    		$user->name = $wechatName;
     		$user->head_image_url = $wechatUser->getAvatar();
     		$user->save();
     	}
