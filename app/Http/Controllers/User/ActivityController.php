@@ -72,7 +72,8 @@ class ActivityController extends Controller
 				'body'             => '报名活动',
 				'detail'           => '报名活动',
 				'out_trade_no'     => $activityOrder->wx_outtrade_no,
-				'total_fee'        => $price * 100,
+// 				'total_fee'        => $price * 100,
+				'total_fee'        => 1,
 				'notify_url'       => config('app.url').'/activity_order_notify', // 支付结果通知网址，如果不设置则会使用配置里的默认地
 		];
 		
