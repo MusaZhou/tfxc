@@ -41,4 +41,4 @@ Route::get('/show_activity_subscribe_success', 'ActivityController@showActivityS
 
 //----------------------Payment -------------------------------
 
-Route::get('/make_payment', 'WechatController@makePayment');
+Route::any('/make_payment/{orderType?}/{activityId?}', 'WechatController@makePayment');
