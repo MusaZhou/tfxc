@@ -141,6 +141,6 @@ class UserController extends Controller
 	}
 	
 	public function showVipRegisterSuccess(Request $request){
-		return view('vip_register_success');
+		return view('wechat.vip_register_success');
 	}
 }

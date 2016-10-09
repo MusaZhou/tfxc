@@ -64,6 +64,7 @@ class ActivityController extends Controller
 			$activityOrder->wx_outtrade_no = 'activity-'.$activity->id.'-user-'.$user->id.'-'.date('YmdHis');
 			$activityOrder->payment_type_id = 1;
 			$activityOrder->wxpay_type = 2;
+			$activityOrder->activity_id = $activity->id;
 			$activityOrder->save();
 		}
 		

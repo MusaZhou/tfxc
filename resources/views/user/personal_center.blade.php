@@ -350,9 +350,9 @@
 								<div class="col-lg-4 col-md-4 text-right">
 									<h4>性别</h4>
 								</div>
-								<div class="col-lg-8 col-md-8 text-left">
-									<h4>{{ $user->gender == 1 ? '男' : '女' }}</h4>
-								</div>
+<!-- 								<div class="col-lg-8 col-md-8 text-left"> -->
+<!-- 									<h4>{{ $user->gender == 1 ? '男' : '女' }}</h4> -->
+<!-- 								</div> -->
 							</div>
 							<?php 
 								$currentVipPeriod = $user->currentVipPeriod();
@@ -429,12 +429,15 @@
 										<?php 
 											//$startDate = (new DateTime($myActivity->start_time))->format('Y-m-d');
 											$activityOrder = $user->getActivityOrder($myActivity->id);
+											error_log('order id:'.$activityOrder->id);
 											$paymentDate = (new DateTime($activityOrder->payment_time))->format('Y-m-d');
 											$city = $myActivity->city;
 											//$province = $city->province;
 											$startTime = $myActivity->start_time;
 											$endTime = $myActivity->end_time;
 											$now = date('Y-m-d H:i:s');
+											
+											error_log('city:'.$city->name);
 										?>
 										<tr>
 											<td>{{ $myActivity->id }}</td>

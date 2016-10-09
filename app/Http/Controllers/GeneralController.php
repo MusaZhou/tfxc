@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\VipOrder;
 use App\ActivityOrder;
 use App\VipPeriod;
+use Wechat;
 
 class GeneralController extends Controller
 {

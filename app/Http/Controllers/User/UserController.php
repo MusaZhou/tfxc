@@ -31,6 +31,7 @@ class UserController extends Controller
 			$myActivityList->push($activityOrder->activity);
 		}
 		
+		Log::info('my activity list');
 		$vipOrder = $user->latestVipOrder();
 		
 		$price;
