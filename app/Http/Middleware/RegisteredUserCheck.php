@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\User;
+use Log;
 
 class RegisteredUserCheck
 {
@@ -19,7 +20,7 @@ class RegisteredUserCheck
     	$user = User::find($request->session()->get('userId'));
     	Log::info('user status:'.$user->status);
     	if($user->status == 0){
-    		redirect('/wechat/show_normal_register');
+    		return redirect('/wechat/show_normal_register');
     	}
     	
         return $next($request);

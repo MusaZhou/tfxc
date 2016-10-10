@@ -11,18 +11,26 @@ use App\PaymentType;
 use App\Constant;
 use DB;
 use App\VipOrder;
+use Log;
 
 class UserController extends Controller
 {
     public function index(Request $request){
-		$userList = User::all();
-		
+		$userList = User::where('status', 1)->get();
+		Log::info('user list:'.$userList);
+		$vipUserList = $userList->filter(function($item, $key){
+			return $item->isVip();	
+		});
+		Log::info('vip user list:'.$vipUserList);
+		$normalUserList = $userList->diff($vipUserList);
+		Log::info('normal user list:'.$normalUserList);
 		$paymentTypeList = PaymentType::all();
 		
 		$vipStandardPrice = Constant::first()->vip_price;
 		
 		return view('admin.user_management', [
-												'userList' => $userList, 
+												'normalUserList' => $normalUserList, 
+												'vipUserList' => $vipUserList,
 												'paymentTypeList' => $paymentTypeList,
 												'standardVipPrice' => $vipStandardPrice,
 		]);

@@ -277,14 +277,14 @@
             
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
+                    <div class="panel panel-success">
                         <div class="panel-heading">
-                            	用户列表
+                            	正式会员列表
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="user_list">
+                                <table class="table table-striped table-bordered table-hover" id="vip_user_list">
                                     <thead>
                                         <tr>
                                         	<th></th>
@@ -297,12 +297,11 @@
                                             <th>微信昵称</th>
                                             <th>邮箱</th>
                                             <th>性别</th>
-                                            <th>会员</th>
                                             <th>备注</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	@foreach ( $userList as $user)
+                                    	@foreach ( $vipUserList as $user)
                                         <tr>
                                         	<td><input type="radio" name="userRadio" value="{{$user->id}}"></td>
                                             <td>{{ $user->id }}</td>
@@ -314,7 +313,47 @@
                                             <td>{{ $user->wechat_name }}</td>
                                             <th>{{ $user->email }}</th>
                                             <td>{{ $user->gender == 1 ? '男' : '女' }}</td>
-                                            <td>{{ $user->isVip() ? '是' : '否' }}</td>
+                                            <td>{{ $user->note }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            	普通会员列表
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <table class="table table-striped table-bordered table-hover" id="normal_user_list">
+                                    <thead>
+                                        <tr>
+                                        	<th></th>
+                                            <th>ID</th>
+                                            <th>姓名</th>
+                                            <th>手机号码</th>
+                                            <th>微信昵称</th>
+                                            <th>邮箱</th>
+                                            <th>备注</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    	@foreach ( $normalUserList as $user)
+                                        <tr>
+                                        	<td><input type="radio" name="userRadio" value="{{$user->id}}"></td>
+                                            <td>{{ $user->id }}</td>
+                                            <td id="userNameTD_{{ $user->id }}">{{ $user->name }}</td>
+                                            <td id="userPhoneTD_{{ $user->id }}">{{ $user->phone }}</td>
+                                            <td>{{ $user->wechat_name }}</td>
+                                            <th>{{ $user->email }}</th>
                                             <td>{{ $user->note }}</td>
                                         </tr>
                                         @endforeach
@@ -390,22 +429,33 @@
     var vipPeriodTable;
     
     $(function() {
-        var columnDefArray = [
+        var normalUserTableColumn = [
 							   { "width": "5%", "targets": 0},
     	    	               { "width": "5%", "targets": 1},
-    	    	               { "width": "10%", "targets": 2},
-    	    	               { "width": "10%", "targets": 3},
-    	    	               { "width": "10%", "targets": 4},
-    	    	               { "width": "10%", "targets": 5},
-    	    	               { "width": "5%", "targets": 6},
-    	    	               { "width": "10%", "targets": 7},
-    	    	               { "width": "15%", "targets": 8},
-    	    	               { "width": "5%", "targets": 9},
-    	    	               { "width": "5%", "targets": 10},
-    	    	               { "width": "10%", "targets": 11},
+    	    	               { "width": "15%", "targets": 2},
+    	    	               { "width": "15%", "targets": 3},
+    	    	               { "width": "15%", "targets": 4},
+    	    	               { "width": "20%", "targets": 5},
+    	    	               { "width": "25%", "targets": 6},
     	    	               ];
         
-    	initializeDataTable($('#user_list'), columnDefArray, 25, [[1, "desc"]]);
+    	initializeDataTable($('#normal_user_list'), normalUserTableColumn, 10, [[1, "desc"]]);
+
+    	var vipUserTableColumn = [
+    								   { "width": "5%", "targets": 0},
+    	    	    	               { "width": "5%", "targets": 1},
+    	    	    	               { "width": "10%", "targets": 2},
+    	    	    	               { "width": "10%", "targets": 3},
+    	    	    	               { "width": "10%", "targets": 4},
+    	    	    	               { "width": "10%", "targets": 5},
+    	    	    	               { "width": "5%", "targets": 6},
+    	    	    	               { "width": "10%", "targets": 7},
+    	    	    	               { "width": "15%", "targets": 8},
+    	    	    	               { "width": "5%", "targets": 9},
+    	    	    	               { "width": "10%", "targets": 10},
+    	    	    	               ];
+    	        
+    	initializeDataTable($('#vip_user_list'), vipUserTableColumn, 10, [[1, "desc"]]);
 
 		// vip period table defination
     	
