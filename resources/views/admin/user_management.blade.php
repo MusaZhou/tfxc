@@ -250,7 +250,7 @@
             </div>
      </div>
      		<div class="row" style="margin: 5px;">
-     			<div class="col-lg-1 col-lg-offset-9 text-left"><label>VIP注册标准费用</label></div>
+     			<div class="col-lg-2 col-lg-offset-8 text-left"><label>VIP注册标准费用</label></div>
      			<div class="col-lg-1 text-center">{{ $standardVipPrice }}元</div>
      			<div class="col-lg-1"><button type="button" class="btn btn-default" onclick="editVipStandardPrice()"> 编辑</button></div>
      		</div>
