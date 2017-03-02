@@ -49,7 +49,7 @@ class ActivityController extends Controller
 			$activityOrder->activity_id = $activity->id;
 			$activityOrder->price = $price;
 			$activityOrder->status = 1;
-			$activityOrder->wx_outtrade_no = 'activity-'.$activity->id.'-user-'.$user->id.'-'.date('YmdHis');
+			$activityOrder->wx_outtrade_no = 'activity'.$activity->id.'user'.$user->id.''.date('YmdHis');
 			$activityOrder->payment_type_id = 1;
 			$activityOrder->wxpay_type = 1;
 			$activityOrder->save();
