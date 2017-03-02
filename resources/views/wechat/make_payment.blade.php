@@ -21,7 +21,7 @@
 		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 		$(function(){
-			wx.config({!! $js->config(array('chooseWXPay'), true) !!});
+			wx.config({!! $js->config(array('chooseWXPay'), false) !!});
 
 // 			wx.ready(function(){
 				

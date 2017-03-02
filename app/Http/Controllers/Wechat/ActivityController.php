@@ -11,6 +11,7 @@ use App\ActivityOrder;
 use App\User;
 use Wechat;
 use EasyWeChat\Payment\Order;
+use Log;
 
 class ActivityController extends Controller
 {
@@ -61,8 +62,8 @@ class ActivityController extends Controller
 				'body'             => '报名活动',
 				'detail'           => '报名活动',
 				'out_trade_no'     => $activityOrder->wx_outtrade_no,
-// 				'total_fee'        => $price * 100,
-				'total_fee'        => 1,
+				'total_fee'        => $price * 100,
+// 				'total_fee'        => 1,
 				'notify_url'       => config('app.url').'/activity_order_notify', // 支付结果通知网址，如果不设置则会使用配置里的默认地
 				'openid' 		   => $user->open_id,
 		];
@@ -70,7 +71,7 @@ class ActivityController extends Controller
 		$order = new Order($attributes);
 		
 		$result = $payment->prepare($order);
-		
+		Log::('response result:'.$result);
 		if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
 			$prepayId = $result->prepay_id;
 			$config = $payment->configForJSSDKPayment($prepayId);

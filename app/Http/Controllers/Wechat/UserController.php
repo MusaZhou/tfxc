@@ -11,6 +11,7 @@ use App\Constant;
 use App\VipOrder;
 use Wechat;
 use EasyWeChat\Payment\Order;
+use Log;
 
 class UserController extends Controller
 {
@@ -87,8 +88,8 @@ class UserController extends Controller
 				'body'             => '注册VIP会员',
 				'detail'           => '注册VIP会员',
 				'out_trade_no'     => $vipOrder->wx_outtrade_no,
-// 				'total_fee'        => $price * 100,
-				'total_fee'        => 1,
+				'total_fee'        => $price * 100,
+// 				'total_fee'        => 1,
 				'notify_url'       => config('app.url').'/vip_order_notify', // 支付结果通知网址，如果不设置则会使用配置里的默认地
 				'openid' 		   => $user->open_id,
 		];
@@ -142,5 +143,31 @@ class UserController extends Controller
 	
 	public function showVipRegisterSuccess(Request $request){
 		return view('wechat.vip_register_success');
+	}
+	
+	public function showBindUser(Request $request){
+		return view('wechat.bind_user');
+	}
+	
+	public function bindUser(Request $request){
+		$user = User::find($request->session()->get('userId', 1));
+		$phone = $request->phone;
+		Log::info('phone:'.$phone);
+		$userCreated = User::where('phone', $phone)->get()->first();
+		if(empty($userCreated)){
+			Log::info('user not registered');
+			return view('wechat.bind_user', ['errorMsg' => '您的用户不存在，请先注册']);
+		}else{
+			$userCreated->wechat_name = $user->wechat_name;
+			$userCreated->head_image_url = $user->head_image_url;
+			$userCreated->open_id = $user->open_id;
+			$userCreated->save();
+			session(['userId' => $userCreated->id]);
+			
+			if($userCreated->id != $user->id){
+				$user->softDelete();
+			}
+			return redirect('/wechat/personal_info');
+		}
 	}
 }

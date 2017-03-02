@@ -35,6 +35,8 @@ class User extends Model
 		foreach($this->activityOrders as $activityOrder){
 			$activityOrder->softDelete();
 		}
+		
+		$this->delete();
 	}
 	
 	public function isVip(){

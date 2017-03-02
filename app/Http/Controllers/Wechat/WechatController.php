@@ -30,9 +30,19 @@ class WechatController extends Controller
 		
 		$buttons = [
 				[
-						"type" => "view",
-						"name" => "注册会员",
-						"url"  => config('app.url')."/wechat/show_normal_register",
+						"name"       => "会员",
+						"sub_button" => [
+								[
+										"type" => "view",
+										"name" => "注册会员",
+										"url"  => config('app.url')."/wechat/show_normal_register",
+								],
+								[
+										"type" => "view",
+										"name" => "绑定手机",
+										"url"  => config('app.url')."/wechat/show_bind_user",
+								],
+						],
 				],
 				[
 						"type" => "view",
@@ -98,8 +108,8 @@ class WechatController extends Controller
 					'body'             => '注册VIP会员',
 					'detail'           => '注册VIP会员',
 					'out_trade_no'     => $vipOrder->wx_outtrade_no,
-					// 				'total_fee'        => $price * 100,
-					'total_fee'        => 1,
+					'total_fee'        => $price * 100,
+// 					'total_fee'        => 1,
 					'notify_url'       => config('app.url').'/vip_order_notify', // 支付结果通知网址，如果不设置则会使用配置里的默认地
 					'openid' 		   => $user->open_id,
 			];
@@ -155,8 +165,8 @@ class WechatController extends Controller
 					'body'             => '报名活动',
 					'detail'           => '报名活动',
 					'out_trade_no'     => $activityOrder->wx_outtrade_no,
-					// 				'total_fee'        => $price * 100,
-					'total_fee'        => 1,
+					'total_fee'        => $price * 100,
+// 					'total_fee'        => 1,
 					'notify_url'       => config('app.url').'/activity_order_notify', // 支付结果通知网址，如果不设置则会使用配置里的默认地
 					'openid' 		   => $user->open_id,
 			];

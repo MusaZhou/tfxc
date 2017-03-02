@@ -290,20 +290,13 @@
 								src="{{ asset('images/Ibrahim.jpg') }}" alt="Team Member 2">
 							<div class="team-profile-content-block">
 								<ul>
-									<li>Senior partner of Al-Sadiq Consulting;</li>
-									<li>Co-founder of Society of Islamic Banking and Finance
-										Professionals;</li>
-									<li>Master degree of Islamic Banking and Finance in Institute
-										of Islamic Banking and Finance, International Islamic
-										University Malaysia;</li>
-									<li>A member of the Association of Chartered Certified
-										Accountants.</li>
-									<li>Several years in Allianz based in China. He also has more
-										experiences in FMCG and Durable consummer goods industry over
-										seven years;</li>
-									<li>Practice is mostly regarding Islamic finance, Halal
-										industry, and Halal tourism;</li>
-									<li>Key specialization area is halal tourism and sukuk.</li>
+									<li>Managing Director & Senior Partner of Al-Sadiq Consulting;</li>
+									<li>Co-founder of Society of Islamic Banking and Finance Professionals;</li>
+									<li>Master degree of Islamic Banking and Finance in Institute of Islamic Banking and Finance, IIUM;</li>
+									<li>A member of the Association of Chartered Certified Accountants;</li>
+									<li>Specialized in Investment, Strategic Management, Data Analysis, particular in Sukuk, published the related paper of Sukuk in the academic journal;</li>
+									<li>Rich experiences in World's Top Five Hundred Companies—Mengniu Dairy Group, Allianz over 10 years;</li>
+									<li>An invited speaker in The Fragrant Hill Financial Innovation Forum in Beijing，2016.</li>
 								</ul>
 							</div>
 						</div>
@@ -533,21 +526,20 @@
 						updates from Al-Sadiq, connect with us on social media.</p>
 					<h3>Beijing Office</h3>
 					<ul class="contact-list">
-						<li><span class="icon contact-icon contact-icon-location">Room
-								X06-101,Building 2, Xianghuangqi,Haidian District,Beijing,PRC</span></li>
+						<li><span class="icon contact-icon contact-icon-location">Level 26, Fortune Financial Center No. 5, Dong San Huan Zhong Road Chaoyang District,Beijing,PRC</span></li>
 						<li><span class="icon contact-icon contact-icon-phone">
-								+8615011186262</span></li>
+								+8615011186262<br/>+8615210285806</span></li>
 						<li><span class="icon contact-icon contact-icon-email"><a
-								href="mailto:hello@skokovcompany.com?subject=General%20Enquiry&anp;body=">han-guangyu@sadiqconsulting.com</a></span></li>
+								href="mailto:hello@skokovcompany.com?subject=General%20Enquiry&anp;body=">han-guangyu@sadiqconsulting.com<br/>maryam850302@sadiqconsulting.com
+</a></span></li>
 					</ul>
 					<h3>Kualua Lumpur Office</h3>
 					<ul class="contact-list">
-						<li><span class="icon contact-icon contact-icon-location">No.72A-2,Floor2,Block
-								D Plaza Usahawan,Jalan Danau Niaga 1 Taman Dauau Kota,Kuala
+						<li><span class="icon contact-icon contact-icon-location">Level 36, Menara Citibank  165 Jalan Ampang, 50450 Kuala Lumpur
 								Lumpur,Malaysia</span></li>
-						<li><span class="icon contact-icon contact-icon-phone">Mobil:+601123021612</span></li>
+						<li><span class="icon contact-icon contact-icon-phone">Mobil:+601123021612<br/>Tel: +603 2169 6323<br/>Fax:+603 2169 7321</span></li>
 						<li><span class="icon contact-icon contact-icon-email"><a
-								href="mailto:hello@skokovcompany.com?subject=General%20Enquiry&anp;body=">dingbo@sadiqconsulting.com</a></span></li>
+								href="mailto:hello@skokovcompany.com?subject=General%20Enquiry&anp;body=">dingbo@sadiqconsulting.com<br/>sulaimanliu@sadiqconsulting.com</a></span></li>
 					</ul>
 				</div>
 				<div class="contact-block-form col-tablet-6">
@@ -590,7 +582,7 @@
 		<div class="footer-inner container">
 			<div class="clear">
 				<div class="footer-column col-tablet-8">
-					<p>&copy; Copyright 2015 &mdash; All Rights Reserved</p>
+					<p>&copy; Copyright 2017 &mdash; All Rights Reserved</p>
 				</div>
 				<div class="footer-column col-tablet-4" style="display: none;">
 					<ul class="footer-social-list icon-list-inline">

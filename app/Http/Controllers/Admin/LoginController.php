@@ -9,6 +9,7 @@ use App\Admin;
 use Hash;
 use Log;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class LoginController extends Controller
 {

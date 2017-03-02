@@ -29,6 +29,10 @@ Route::get('/personal_activity_history', 'UserController@activityHistory')->midd
 
 Route::get('/show_vip_register_success', 'UserController@showVipRegisterSuccess');
 
+Route::post('/bind_user', 'UserController@bindUser');
+
+Route::get('/show_bind_user', 'UserController@showBindUser');
+
 //---------------------- ActivityController -------------------------------
 
 Route::get('/activity_list', 'ActivityController@activityList');

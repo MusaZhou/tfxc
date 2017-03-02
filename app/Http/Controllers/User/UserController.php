@@ -31,7 +31,7 @@ class UserController extends Controller
 			$myActivityList->push($activityOrder->activity);
 		}
 		
-		Log::info('my activity list');
+// 		Log::info('my activity list');
 		$vipOrder = $user->latestVipOrder();
 		
 		$price;
@@ -146,8 +146,8 @@ class UserController extends Controller
 				'body'             => '注册VIP会员',
 				'detail'           => '注册VIP会员',
 				'out_trade_no'     => $vipOrder->wx_outtrade_no,
-// 				'total_fee'        => $price * 100,
-				'total_fee'        => 1,
+				'total_fee'        => $price * 100,
+// 				'total_fee'        => 1,
 				'notify_url'       => config('app.url').'/vip_order_notify', // 支付结果通知网址，如果不设置则会使用配置里的默认地
 		];
 		

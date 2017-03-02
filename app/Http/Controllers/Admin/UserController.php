@@ -17,13 +17,13 @@ class UserController extends Controller
 {
     public function index(Request $request){
 		$userList = User::where('status', 1)->get();
-		Log::info('user list:'.$userList);
+// 		Log::info('user list:'.$userList);
 		$vipUserList = $userList->filter(function($item, $key){
 			return $item->isVip();	
 		});
-		Log::info('vip user list:'.$vipUserList);
+// 		Log::info('vip user list:'.$vipUserList);
 		$normalUserList = $userList->diff($vipUserList);
-		Log::info('normal user list:'.$normalUserList);
+// 		Log::info('normal user list:'.$normalUserList);
 		$paymentTypeList = PaymentType::all();
 		
 		$vipStandardPrice = Constant::first()->vip_price;
@@ -56,6 +56,7 @@ class UserController extends Controller
 		$user->name = $name;
 		$user->note = $note;
 		$user->status = 1;
+		$user->password = bcrypt('123456');
 		
 		$user->save();
 		
@@ -104,7 +105,7 @@ class UserController extends Controller
 	public function updateVipStandardPrice(Request $request){
 		$price = $request->price;
 		
-		DB::table('Constants')->update(['vip_price' => $price]);
+		DB::table('constants')->update(['vip_price' => $price]);
 		
 		return ['status' => 1];
 	}
