@@ -71,7 +71,8 @@ class ActivityController extends Controller
 		$order = new Order($attributes);
 		
 		$result = $payment->prepare($order);
-		Log::('response result:'.$result);
+		Log::info('response result:'.$result);
+		
 		if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
 			$prepayId = $result->prepay_id;
 			$config = $payment->configForJSSDKPayment($prepayId);
